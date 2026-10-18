@@ -1,0 +1,56 @@
+name: Deploy site
+
+# One Pages site, two parts: DarkBench at / and the eval dashboard at /dashboard/.
+# Pushes republish with the committed scores. The weekly run (or "Run workflow") first re-crawls
+# all 50 variants, fails on any drop below the baselines, and publishes the fresh scores.
+on:
+  push:
+    branches: [main]
+    paths: ["apps/darkbench/**", "packages/schema/**", "packages/dashboard/**", "eval/**"]
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build:bench
+        env:
+          DARKBENCH_BASE_PATH: /darkscan
+      - if: github.event_name != 'push'
+        run: npx playwright install --with-deps chromium
+      - if: github.event_name != 'push'
+        run: |
+          npm run eval -- --check
+          npm run eval -- --agent --check
+      - run: npm run dashboard -- --out apps/darkbench/out/dashboard
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/darkbench/out
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: eval-runs
+          path: runs/

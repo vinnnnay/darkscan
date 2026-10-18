@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build:bench
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: test-results/
+
+  eval:
+    # Crawls all 50 DarkBench variants and fails if any detector scores below eval/baseline.json.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build:bench
+      - run: npx playwright install --with-deps chromium
+      - run: npm run eval -- --check
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: eval-runs
+          path: runs/
+
+  eval-agent:
+    # The recipe agent finds the checkout path on all 50 variants by itself, then every recipe
+    # it wrote is replayed. Fails if any detector score drops below eval/baseline-agent.json.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build:bench
+      - run: npx playwright install --with-deps chromium
+      - run: npm run eval -- --agent --check
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: eval-agent-runs
+          path: runs/
