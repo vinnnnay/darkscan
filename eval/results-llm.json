@@ -1,0 +1,270 @@
+{
+  "dev": [
+    {
+      "pattern": "drip_pricing",
+      "tp": 14,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "basket_sneaking",
+      "tp": 13,
+      "fp": 0,
+      "fn": 0,
+      "tn": 12,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "false_urgency",
+      "tp": 11,
+      "fp": 0,
+      "fn": 0,
+      "tn": 14,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "interface_interference",
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 10,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "nagging",
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "tn": 18,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "forced_action",
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "tn": 15,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "bait_and_switch",
+      "tp": 12,
+      "fp": 0,
+      "fn": 0,
+      "tn": 13,
+      "review": 8,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "confirm_shaming",
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "tn": 17,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "trick_question",
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 10,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "disguised_ads",
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "tn": 18,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    }
+  ],
+  "test": [
+    {
+      "pattern": "drip_pricing",
+      "tp": 11,
+      "fp": 0,
+      "fn": 0,
+      "tn": 14,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "basket_sneaking",
+      "tp": 12,
+      "fp": 0,
+      "fn": 0,
+      "tn": 13,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "false_urgency",
+      "tp": 7,
+      "fp": 0,
+      "fn": 5,
+      "tn": 13,
+      "review": 0,
+      "precision": 1,
+      "recall": 0.5833333333333334,
+      "missed": [
+        39,
+        42,
+        45,
+        48,
+        49
+      ],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "interface_interference",
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 16,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "nagging",
+      "tp": 11,
+      "fp": 0,
+      "fn": 0,
+      "tn": 14,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "forced_action",
+      "tp": 1,
+      "fp": 0,
+      "fn": 4,
+      "tn": 20,
+      "review": 0,
+      "precision": 1,
+      "recall": 0.2,
+      "missed": [
+        27,
+        33,
+        34,
+        41
+      ],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "bait_and_switch",
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "tn": 15,
+      "review": 10,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "confirm_shaming",
+      "tp": 6,
+      "fp": 5,
+      "fn": 1,
+      "tn": 13,
+      "review": 0,
+      "precision": 0.5454545454545454,
+      "recall": 0.8571428571428571,
+      "missed": [
+        26
+      ],
+      "falseAlarms": [
+        27,
+        37,
+        39,
+        43,
+        44
+      ]
+    },
+    {
+      "pattern": "trick_question",
+      "tp": 13,
+      "fp": 0,
+      "fn": 0,
+      "tn": 12,
+      "review": 0,
+      "precision": 1,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": []
+    },
+    {
+      "pattern": "disguised_ads",
+      "tp": 10,
+      "fp": 4,
+      "fn": 0,
+      "tn": 11,
+      "review": 0,
+      "precision": 0.7142857142857143,
+      "recall": 1,
+      "missed": [],
+      "falseAlarms": [
+        25,
+        28,
+        36,
+        46
+      ]
+    }
+  ]
+}

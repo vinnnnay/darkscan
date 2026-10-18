@@ -1,0 +1,62 @@
+{
+  "dev": {
+    "drip_pricing": {
+      "precision": 1,
+      "recall": 1
+    },
+    "basket_sneaking": {
+      "precision": 1,
+      "recall": 1
+    },
+    "false_urgency": {
+      "precision": 1,
+      "recall": 1
+    },
+    "interface_interference": {
+      "precision": 1,
+      "recall": 1
+    },
+    "nagging": {
+      "precision": 1,
+      "recall": 1
+    },
+    "forced_action": {
+      "precision": 1,
+      "recall": 1
+    },
+    "bait_and_switch": {
+      "precision": 1,
+      "recall": 1
+    }
+  },
+  "test": {
+    "drip_pricing": {
+      "precision": 1,
+      "recall": 1
+    },
+    "basket_sneaking": {
+      "precision": 1,
+      "recall": 1
+    },
+    "false_urgency": {
+      "precision": 1,
+      "recall": 0.25
+    },
+    "interface_interference": {
+      "precision": 1,
+      "recall": 1
+    },
+    "nagging": {
+      "precision": 1,
+      "recall": 1
+    },
+    "forced_action": {
+      "precision": 1,
+      "recall": 0
+    },
+    "bait_and_switch": {
+      "precision": 1,
+      "recall": 1
+    }
+  }
+}

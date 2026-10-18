@@ -1,0 +1,16 @@
+{
+  "name": "@darkscan/eval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/score.ts",
+  "scripts": {
+    "eval": "node src/cli.ts"
+  },
+  "dependencies": {
+    "@darkscan/agent": "*",
+    "@darkscan/crawler": "*",
+    "@darkscan/detectors": "*",
+    "@darkscan/schema": "*"
+  }
+}
