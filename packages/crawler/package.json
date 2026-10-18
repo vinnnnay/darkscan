@@ -1,0 +1,14 @@
+{
+  "name": "@darkscan/crawler",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "crawl": "node src/cli.ts"
+  },
+  "dependencies": {
+    "@darkscan/schema": "*",
+    "zod": "^4.6.7"
+  }
+}
