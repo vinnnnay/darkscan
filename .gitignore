@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+.env*
+# audit artifacts are large; publish them via releases, not git
+runs/
+traces/
+test-results/
+playwright-report/
+.cache/
+share/
+site/

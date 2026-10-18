@@ -1,0 +1,1648 @@
+{
+  "version": 1,
+  "variants": [
+    {
+      "id": 0,
+      "split": "dev",
+      "patterns": [],
+      "decoys": [],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 1,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "confirm_shaming",
+        "forced_action",
+        "interface_interference",
+        "bait_and_switch",
+        "drip_pricing",
+        "disguised_ads",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 2,
+      "split": "dev",
+      "patterns": [
+        "basket_sneaking",
+        "interface_interference",
+        "bait_and_switch",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "free_gift",
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "Skip",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 3,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "confirm_shaming",
+        "forced_action",
+        "interface_interference",
+        "bait_and_switch",
+        "trick_question"
+      ],
+      "decoys": [
+        "link_decline",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Sponsored",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 4,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "drip_pricing",
+        "disguised_ads",
+        "trick_question"
+      ],
+      "decoys": [
+        "cookie_consent",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Ad",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 5,
+      "split": "dev",
+      "patterns": [
+        "confirm_shaming",
+        "interface_interference",
+        "bait_and_switch",
+        "drip_pricing",
+        "trick_question"
+      ],
+      "decoys": [
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Ad",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 6,
+      "split": "dev",
+      "patterns": [
+        "forced_action",
+        "interface_interference",
+        "drip_pricing",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 7,
+      "split": "dev",
+      "patterns": [
+        "basket_sneaking"
+      ],
+      "decoys": [
+        "real_countdown",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Ad",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 8,
+      "split": "dev",
+      "patterns": [
+        "interface_interference",
+        "bait_and_switch",
+        "drip_pricing",
+        "disguised_ads"
+      ],
+      "decoys": [
+        "real_countdown",
+        "link_decline",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Sponsored",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 9,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "interface_interference",
+        "disguised_ads"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "link_decline",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "Skip",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Create an account to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 10,
+      "split": "dev",
+      "patterns": [
+        "basket_sneaking",
+        "interface_interference",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "free_gift",
+        "cookie_consent",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 11,
+      "split": "dev",
+      "patterns": [
+        "interface_interference",
+        "bait_and_switch",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Ad",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 12,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "interface_interference",
+        "bait_and_switch",
+        "nagging"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "link_decline"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "Skip",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Ad",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 13,
+      "split": "dev",
+      "patterns": [
+        "basket_sneaking",
+        "forced_action",
+        "drip_pricing",
+        "disguised_ads",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "cookie_consent",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 14,
+      "split": "dev",
+      "patterns": [
+        "basket_sneaking",
+        "confirm_shaming",
+        "forced_action",
+        "interface_interference",
+        "trick_question"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "cookie_consent",
+        "link_decline",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Ad",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 15,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "confirm_shaming",
+        "forced_action",
+        "interface_interference",
+        "drip_pricing",
+        "trick_question"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "free_gift",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 16,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "confirm_shaming",
+        "interface_interference",
+        "bait_and_switch",
+        "drip_pricing"
+      ],
+      "decoys": [
+        "real_countdown",
+        "link_decline",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "Skip",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Ad",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 17,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "free_gift",
+        "link_decline",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Ad",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 18,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "forced_action",
+        "interface_interference",
+        "bait_and_switch",
+        "drip_pricing",
+        "trick_question"
+      ],
+      "decoys": [
+        "free_gift",
+        "link_decline",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Sign in to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 19,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "interface_interference",
+        "bait_and_switch",
+        "drip_pricing"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "No thanks",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Sponsored",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 20,
+      "split": "dev",
+      "patterns": [
+        "basket_sneaking",
+        "confirm_shaming",
+        "forced_action",
+        "drip_pricing"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Get 10% off your first order",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Sign in to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Ad",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 21,
+      "split": "dev",
+      "patterns": [
+        "forced_action",
+        "bait_and_switch",
+        "drip_pricing",
+        "disguised_ads",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "cookie_consent",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Selling fast!",
+        "unavailable": "Out of stock",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "Skip",
+        "upsellShame": "No thanks, I'll risk breaking it",
+        "accountWall": "Create an account to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 22,
+      "split": "dev",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "confirm_shaming",
+        "bait_and_switch",
+        "disguised_ads",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Create an account to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Ad",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Email me about deals"
+      }
+    },
+    {
+      "id": 23,
+      "split": "dev",
+      "patterns": [
+        "basket_sneaking",
+        "drip_pricing",
+        "nagging"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "cookie_consent",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Handling charge",
+        "dripFeeLabel": "Payment handling fee",
+        "urgency": "Offer expires in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "No thanks",
+        "newsletterShame": "No thanks, I prefer paying full price",
+        "upsellDecline": "Skip",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Sign in to continue",
+        "guest": "Continue as guest",
+        "adLabel": "Sponsored",
+        "trick": "Tick here if you don't want to not hear about deals",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 24,
+      "split": "dev",
+      "patterns": [
+        "forced_action",
+        "drip_pricing"
+      ],
+      "decoys": [
+        "cookie_consent",
+        "link_decline"
+      ],
+      "words": {
+        "feeLabel": "Platform fee",
+        "dripFeeLabel": "Convenience fee",
+        "urgency": "Deal ends in",
+        "scarcity": "Only 2 left in stock!",
+        "unavailable": "Currently unavailable",
+        "newsletterTitle": "Unlock exclusive deals",
+        "newsletterDecline": "Not now",
+        "newsletterShame": "No, I hate saving money",
+        "upsellDecline": "Skip",
+        "upsellShame": "No, I don't care about my device",
+        "accountWall": "Create an account to continue",
+        "guest": "Checkout as guest",
+        "adLabel": "Sponsored",
+        "trick": "Uncheck this box if you would prefer not to stop receiving offers on WhatsApp and SMS",
+        "optIn": "Send me offers on WhatsApp"
+      }
+    },
+    {
+      "id": 25,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "free_gift",
+        "link_decline"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 26,
+      "split": "test",
+      "patterns": [
+        "confirm_shaming",
+        "bait_and_switch",
+        "drip_pricing"
+      ],
+      "decoys": [
+        "real_countdown",
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Skip sign-in",
+        "adLabel": "Promoted",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 27,
+      "split": "test",
+      "patterns": [
+        "forced_action",
+        "interface_interference",
+        "drip_pricing",
+        "disguised_ads"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "link_decline"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 28,
+      "split": "test",
+      "patterns": [
+        "basket_sneaking",
+        "confirm_shaming",
+        "drip_pricing",
+        "nagging"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 29,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "drip_pricing"
+      ],
+      "decoys": [
+        "free_gift",
+        "cookie_consent",
+        "link_decline"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 30,
+      "split": "test",
+      "patterns": [
+        "bait_and_switch",
+        "drip_pricing",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 31,
+      "split": "test",
+      "patterns": [
+        "basket_sneaking",
+        "forced_action",
+        "drip_pricing",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "free_gift",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 32,
+      "split": "test",
+      "patterns": [
+        "interface_interference",
+        "disguised_ads",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "free_gift",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Register to place your order",
+        "guest": "Buy without an account",
+        "adLabel": "Featured partner",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 33,
+      "split": "test",
+      "patterns": [
+        "basket_sneaking",
+        "forced_action",
+        "interface_interference",
+        "bait_and_switch",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "link_decline",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Register to place your order",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 34,
+      "split": "test",
+      "patterns": [
+        "forced_action",
+        "drip_pricing",
+        "disguised_ads"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "link_decline",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Register to place your order",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 35,
+      "split": "test",
+      "patterns": [
+        "confirm_shaming",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "free_gift",
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 36,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "confirm_shaming",
+        "bait_and_switch",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "free_gift",
+        "cookie_consent",
+        "link_decline"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 37,
+      "split": "test",
+      "patterns": [
+        "basket_sneaking",
+        "interface_interference",
+        "bait_and_switch",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "free_gift",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Register to place your order",
+        "guest": "Skip sign-in",
+        "adLabel": "Promoted",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 38,
+      "split": "test",
+      "patterns": [
+        "interface_interference",
+        "disguised_ads"
+      ],
+      "decoys": [
+        "free_gift",
+        "link_decline",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Register to place your order",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 39,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "bait_and_switch",
+        "disguised_ads",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "free_gift",
+        "cookie_consent",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Not interested",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Skip sign-in",
+        "adLabel": "Promoted",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 40,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "drip_pricing",
+        "disguised_ads"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "free_gift"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Login required for checkout",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 41,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "forced_action",
+        "bait_and_switch",
+        "disguised_ads",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Not interested",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Register to place your order",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 42,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "confirm_shaming",
+        "bait_and_switch",
+        "nagging",
+        "trick_question"
+      ],
+      "decoys": [
+        "free_gift",
+        "signin_prompt"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Login required for checkout",
+        "guest": "Skip sign-in",
+        "adLabel": "Promoted",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    },
+    {
+      "id": 43,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "bait_and_switch",
+        "disguised_ads",
+        "nagging"
+      ],
+      "decoys": [
+        "real_countdown",
+        "free_gift"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 44,
+      "split": "test",
+      "patterns": [],
+      "decoys": [
+        "real_countdown",
+        "gst_at_checkout",
+        "cookie_consent",
+        "link_decline"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Lightning deal ends in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 45,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "interface_interference",
+        "disguised_ads",
+        "nagging"
+      ],
+      "decoys": [
+        "real_countdown",
+        "cookie_consent",
+        "link_decline",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Small cart fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 46,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "confirm_shaming",
+        "interface_interference",
+        "drip_pricing"
+      ],
+      "decoys": [
+        "gst_at_checkout",
+        "cookie_consent",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Order processing fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I'll pay more, thanks",
+        "upsellDecline": "Not interested",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Register to place your order",
+        "guest": "Buy without an account",
+        "adLabel": "Featured partner",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 47,
+      "split": "test",
+      "patterns": [
+        "basket_sneaking",
+        "confirm_shaming",
+        "drip_pricing",
+        "trick_question"
+      ],
+      "decoys": [
+        "real_countdown",
+        "cookie_consent",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Join our VIP club",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Login required for checkout",
+        "guest": "Buy without an account",
+        "adLabel": "Promoted",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 48,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "interface_interference",
+        "bait_and_switch",
+        "drip_pricing",
+        "trick_question"
+      ],
+      "decoys": [
+        "free_gift",
+        "link_decline",
+        "signin_prompt",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "14 people bought this in the last hour",
+        "unavailable": "Sold out",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "Maybe later",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Continue without protection",
+        "upsellShame": "Leave my device unprotected",
+        "accountWall": "Register to place your order",
+        "guest": "Skip sign-in",
+        "adLabel": "Promoted",
+        "trick": "Leave this checked unless you'd rather not miss out on member offers",
+        "optIn": "Subscribe to SMS alerts"
+      }
+    },
+    {
+      "id": 49,
+      "split": "test",
+      "patterns": [
+        "false_urgency",
+        "basket_sneaking",
+        "interface_interference",
+        "disguised_ads"
+      ],
+      "decoys": [
+        "real_countdown",
+        "free_gift",
+        "honest_stockout"
+      ],
+      "words": {
+        "feeLabel": "Service fee",
+        "dripFeeLabel": "Marketplace fee",
+        "urgency": "Price goes back up in",
+        "scarcity": "Just 3 pieces left",
+        "unavailable": "Temporarily out of stock",
+        "newsletterTitle": "Don't miss out on offers",
+        "newsletterDecline": "I'm just browsing",
+        "newsletterShame": "I don't like discounts",
+        "upsellDecline": "Not interested",
+        "upsellShame": "I'll take my chances",
+        "accountWall": "Register to place your order",
+        "guest": "Skip sign-in",
+        "adLabel": "Featured partner",
+        "trick": "I do not wish to opt out of promotional calls",
+        "optIn": "Keep me posted on new arrivals"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "darkscan",
+  "private": true,
+  "description": "Find CCPA-banned dark patterns in e-commerce checkout flows, with replayable evidence.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:bench": "npm run dev -w @darkscan/darkbench",
+    "build:bench": "npm run build -w @darkscan/darkbench",
+    "typecheck": "tsc -p packages/schema --noEmit && tsc -p packages/crawler --noEmit && tsc -p packages/detectors --noEmit && tsc -p packages/report --noEmit && tsc -p packages/agent --noEmit && tsc -p packages/session --noEmit && tsc -p packages/eval --noEmit && tsc -p packages/dashboard --noEmit && tsc -p apps/darkbench --noEmit",
+    "test": "vitest run",
+    "serve:bench": "node apps/darkbench/scripts/serve.ts",
+    "test:e2e": "playwright test",
+    "crawl": "npm run crawl -w @darkscan/crawler --",
+    "eval": "npm run eval -w @darkscan/eval --",
+    "learn": "npm run learn -w @darkscan/agent --",
+    "audit": "npm run audit -w @darkscan/agent --",
+    "dashboard": "npm run build -w @darkscan/dashboard --",
+    "record": "npm run record -w @darkscan/session --",
+    "analyze": "npm run analyze -w @darkscan/session --",
+    "export-run": "npm run export -w @darkscan/session --"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}
