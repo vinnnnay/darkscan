@@ -86,6 +86,18 @@ describe("what the report claims", () => {
     expect(html).toContain("confidence 90%");
   });
 
+  it("repeats the guidelines' own caveat and says the item numbers were checked", () => {
+    const html = render(run([step(0)]), []);
+    expect(html).toContain("shall not be construed as an interpretation of law or as a binding opinion");
+    expect(html).toContain("checked against the Gazette of India text");
+  });
+
+  it("adds what the guideline actually says where a finding could be over-read", () => {
+    const html = render(run([step(0), step(1)]), [finding({ pattern: "forced_action" }), finding({ pattern: "nagging" })]);
+    expect(html).toContain("A required account may or may not count");
+    expect(html.match(/What the guideline says/g)).toHaveLength(1); // nagging has no note, forced action does
+  });
+
   it("lists likely findings before ones that need review, and hides OK ones", () => {
     const order = ranked([
       finding({ pattern: "nagging", status: "review", confidence: 0.95 }),

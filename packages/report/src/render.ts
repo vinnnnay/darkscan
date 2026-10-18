@@ -1,4 +1,4 @@
-import { PATTERNS, type AuditRun, type Finding, type PatternId, type Step } from "@darkscan/schema";
+import { ANNEXURE_CAVEAT, PATTERNS, PATTERN_NOTES, type AuditRun, type Finding, type PatternId, type Step } from "@darkscan/schema";
 
 export type ReportMode = "crawler" | "recorded-session";
 
@@ -92,7 +92,7 @@ export function renderReportHtml(input: ReportInput): string {
       return `<article class="finding ${f.status}">
 <h3>${esc(p.name)} <span class="badge ${f.status}">${STATUS_LABEL[f.status]}</span></h3>
 <p class="meta">Possible breach of CCPA dark-pattern guidelines (2023), Annexure 1, item ${p.annex} · confidence ${Math.round(f.confidence * 100)}% · found by ${f.detector === "rule" ? "a rule" : "a language model"}</p>
-<p>${esc(f.explanation)}</p>
+<p>${esc(f.explanation)}</p>${PATTERN_NOTES[f.pattern] ? `\n<p class="note"><strong>What the guideline says.</strong> ${esc(PATTERN_NOTES[f.pattern])}</p>` : ""}
 <div class="evidence">${evidence.map(figure).join("\n")}</div>
 </article>`;
     })
@@ -117,7 +117,7 @@ main{max-width:920px;margin:0 auto;padding:24px 16px 64px}h1{font-size:1.6rem;ma
 .finding{border:1px solid var(--line);border-left-width:5px;border-radius:8px;padding:12px 16px;margin:12px 0;background:var(--card)}
 .finding.likely{border-left-color:var(--likely)}.finding.review{border-left-color:var(--review)}
 .badge{font-size:.72rem;padding:2px 8px;border-radius:99px;border:1px solid currentColor;vertical-align:middle;margin-left:6px}.badge.likely{color:var(--likely)}.badge.review{color:var(--review)}
-.meta{font-size:.85rem;color:var(--muted);margin:0 0 8px}.evidence{display:flex;flex-wrap:wrap;gap:12px}
+.meta{font-size:.85rem;color:var(--muted);margin:0 0 8px}.note{font-size:.86rem;color:var(--muted);margin:8px 0}.evidence{display:flex;flex-wrap:wrap;gap:12px}
 figure{margin:0;width:200px}figure img{width:100%;max-height:260px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:6px}
 figcaption{font-size:.78rem;word-break:break-word}.noimg{height:90px;display:grid;place-items:center;border:1px dashed var(--line);border-radius:6px;font-size:.8rem}
 table{width:100%;border-collapse:collapse;font-size:.88rem}td,th{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word}
@@ -129,7 +129,7 @@ ul{padding-left:20px}
 <h1>${esc(title)}</h1>
 <p class="muted">${mode === "recorded-session" ? "Recorded by a person shopping in their own browser" : "Tested by DarkScan's automated shopper"} · run ${esc(run.id)} · ${esc(run.startedAt)} · generated ${esc(generatedAt)}</p>
 
-<div class="notice"><strong>How to read this.</strong> This report lists <em>potential</em> violations found by a test, each with the evidence behind it. It is not a legal finding and does not say that anyone broke the law. "Likely" findings have high confidence; "Needs review" ones are weaker. A person should check the evidence before acting on any of them.</div>
+<div class="notice"><strong>How to read this.</strong> This report lists <em>potential</em> violations found by a test, each with the evidence behind it. It is not a legal finding and does not say that anyone broke the law. "Likely" findings have high confidence; "Needs review" ones are weaker. A person should check the evidence before acting on any of them. The guidelines themselves say their examples ${esc(ANNEXURE_CAVEAT)}.</div>
 
 <h2>Summary</h2>
 <p>${shown.length === 0 ? "No potential dark patterns were found in what this audit saw. Read “What this audit could not see” below before treating that as good news." : `${likely} likely and ${shown.length - likely} needing review, out of the patterns DarkScan can test.`}</p>
@@ -149,7 +149,7 @@ ${cov.saw.length ? `<p class="muted">It did see: ${esc(cov.saw.join(", "))}.</p>
 <ul>
 <li>Detectors: ${esc(detectors)}. Rules compare prices, carts, popups and countdowns; a language model, where used, judges only wording.</li>
 <li>${mode === "recorded-session" ? "The session was recorded passively while a person used the site. DarkScan clicked nothing. Typed values are hidden in screenshots and removed from saved pages, and recording stopped at payment." : "The automated shopper obeys robots.txt, identifies itself, pauses between actions, browses as a guest, never signs up and stops before payment. It never solves bot checks."}</li>
-<li>Each pattern maps to the CCPA Guidelines for Prevention and Regulation of Dark Patterns, 2023, Annexure 1. Check the item numbers against the notified text.</li>
+<li>Each pattern maps to an item of Annexure 1 of the CCPA Guidelines for Prevention and Regulation of Dark Patterns, 2023 (notified 30 November 2023). The item numbers were checked against the Gazette of India text.</li>
 </ul>
 </main>
 </body>
