@@ -1,0 +1,43 @@
+{
+  "site": "snapdeal",
+  "baseUrl": "https://www.snapdeal.com",
+  "steps": [
+    {
+      "do": "goto",
+      "path": "/"
+    },
+    {
+      "do": "click",
+      "target": {
+        "text": "Life Like A10 PRO 2 Bluetooth Earbuds In Ear TWS Black"
+      },
+      "why": "open a product"
+    },
+    {
+      "do": "wait",
+      "ms": 2500,
+      "why": "let any countdown tick"
+    },
+    {
+      "do": "reload",
+      "why": "check whether urgency timers restart"
+    },
+    {
+      "do": "click",
+      "target": {
+        "text": "ADD TO CART",
+        "exact": true
+      },
+      "why": "add the product to the cart",
+      "adds": "Life Like A10 PRO 2 Bluetooth Earbuds In Ear TWS Black"
+    },
+    {
+      "do": "click",
+      "target": {
+        "role": "link",
+        "name": "PROCEED TO CHECKOUT"
+      },
+      "why": "proceed to checkout"
+    }
+  ]
+}
