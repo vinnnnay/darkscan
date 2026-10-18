@@ -1,0 +1,20 @@
+{
+  "name": "@darkscan/session",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "record": "node src/cli.ts record",
+    "analyze": "node src/cli.ts analyze",
+    "export": "node src/cli.ts export"
+  },
+  "dependencies": {
+    "@darkscan/agent": "*",
+    "@darkscan/crawler": "*",
+    "@darkscan/detectors": "*",
+    "@darkscan/report": "*",
+    "@darkscan/schema": "*",
+    "playwright": "1.64.1"
+  }
+}
