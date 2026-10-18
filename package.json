@@ -20,7 +20,8 @@
     "dashboard": "npm run build -w @darkscan/dashboard --",
     "record": "npm run record -w @darkscan/session --",
     "analyze": "npm run analyze -w @darkscan/session --",
-    "export-run": "npm run export -w @darkscan/session --"
+    "export-run": "npm run export -w @darkscan/session --",
+    "summarize": "npm run summarize -w @darkscan/session --"
   },
   "engines": {
     "node": ">=22.18"

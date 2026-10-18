@@ -61,7 +61,13 @@ Three things keep the benchmark honest:
 | Nagging | Newsletter popup returns on every page and 15s after closing |
 | Trick question | Pre-ticked, double-negative opt-out checkbox |
 
-Subscription traps, SaaS billing and rogue malware are out of scope: observing them
+The 13 item numbers and names were checked against the Gazette of India notification of the guidelines (30 November
+2023), published at <https://ccpa.doca.gov.in/guidelines.php>. The guidelines say their own examples "provide only guidance
+and shall not be construed as an interpretation of law or as a binding opinion", and reports repeat that.
+One consequence: "forced action" in the guidelines means being forced to buy extra goods, sign up for an *unrelated*
+service or share personal information, so a required account is reported with a caveat, not as a clear breach.
+
+Subscription traps, SaaS billing and rogue malwares are out of scope: observing them
 needs a payment or a software install.
 
 The clean variant still has a disclosed delivery fee and a disclosed platform fee, so
@@ -312,6 +318,20 @@ What it cannot do: it doesn't know a name or address it wasn't told, so **text t
 Asha") is only masked if you list it, and screenshots can show it. `--no-screenshots` records text only, and
 `export-run` leaves screenshots out unless you ask. Look through a recording before sharing it.
 
+### For people who don't use a terminal
+
+`start-recording.cmd` (Windows) and `start-recording.sh` (Mac, Linux) check Node is installed, install on first run,
+ask three plain questions (the shop's address, words to hide, whether to make a copy to send), open the report at the
+end, and leave a text-only copy in `share/`. They are meant to be double-clicked. [docs/PARTICIPANT_GUIDE.md](docs/PARTICIPANT_GUIDE.md)
+is the page to send to someone, with the consent explained in plain words first.
+
+### Running a small study
+
+[docs/STUDY.md](docs/STUDY.md) covers inviting people, handling their data, and reporting results honestly.
+`npm run summarize -- --dir study` combines a folder of people's sessions (one folder each) into `summary.md`:
+sessions per shop, and how many sessions showed each *potential* pattern. It counts a session once per pattern, marks
+shops with fewer than 3 sessions as too few to generalise from, and reports counts only, never verdicts.
+
 ## Dashboard
 
 `packages/dashboard` turns `eval/results*.json` into one static page (precision and recall per pattern,
@@ -354,6 +374,8 @@ packages/eval      Crawl every DarkBench variant and score precision/recall
 packages/dashboard Static dashboard built from the eval scores
 eval/              Latest scores and the CI regression baselines
 recipes/           Saved site recipes (JSON)
+docs/              Participant guide and study protocol for recorded sessions
+start-recording.*  Double-click launchers for recording a session (Windows, Mac, Linux)
 e2e/               Browser tests: DarkBench variants and crawler evidence
 ```
 

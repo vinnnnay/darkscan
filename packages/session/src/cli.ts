@@ -4,14 +4,18 @@
 //                     [--no-screenshots] [--llm] [--out runs]
 //   npm run analyze -- --run runs/<folder> [--llm]            (also for a folder someone sent you)
 //   npm run export-run -- --run runs/<folder> --out share/<name> [--redact "..."] [--screenshots]
+//   npm run record -- ... --share share             also leave a text-only copy in share/<id>, ready to send
+//   npm run summarize -- --dir study [--out study/summary.md]   combine many people's sessions into one page
 //
 // DarkScan never clicks anything here. Typing and choices belong to the person.
-import { resolve } from "node:path";
+import { writeFile } from "node:fs/promises";
+import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { DEFAULT_MODEL, detectAll, detectWithLlm, ollama, ollamaReady } from "@darkscan/detectors";
 import { writeReport } from "@darkscan/report";
 import type { AuditRun } from "@darkscan/schema";
 import { chromium } from "playwright";
+import { loadSessions, renderSummary } from "./aggregate.ts";
 import { exportBundle, loadRun } from "./load.ts";
 import { parseTerms } from "./redact.ts";
 import { SessionRecorder } from "./recorder.ts";
@@ -30,6 +34,9 @@ const { values } = parseArgs({
     llm: { type: "boolean", default: false },
     model: { type: "string", default: DEFAULT_MODEL },
     headless: { type: "boolean", default: false },
+    share: { type: "string" },
+    "share-screenshots": { type: "boolean", default: false },
+    dir: { type: "string" },
   },
 });
 
@@ -96,6 +103,21 @@ DarkScan is recording. You are in control: it never clicks anything.
   await browser.close().catch(() => {});
   process.stdin.pause();
   await analyse(run, recorder.folder);
+  if (values.share) {
+    // A copy that is safer to send: text only unless asked, masked again with the words the person listed.
+    const out = join(path(values.share), run.id);
+    const result = await exportBundle(recorder.folder, out, { terms: parseTerms(values.redact), screenshots: values["share-screenshots"] });
+    console.log(`\nShareable copy (${result.steps} steps, ${result.screenshots} screenshots): ${out}`);
+    console.log("Look through it before you send it. Names and addresses nobody listed are still there, and so is anything in a screenshot.");
+  }
+} else if (command === "summarize") {
+  if (!values.dir) throw new Error("summarize needs --dir <folder holding one folder per session>");
+  const dir = path(values.dir);
+  const { sessions, skipped } = await loadSessions(dir, (run) => (llm ? detectWithLlm(run, llm) : detectAll(run)));
+  const out = path(values.out ?? join(values.dir, "summary.md"));
+  await writeFile(out, renderSummary(sessions, skipped));
+  console.log(`${sessions.length} sessions summarised${skipped.length ? `, ${skipped.length} skipped` : ""}: ${out}`);
+  for (const line of skipped) console.log(`  skipped ${line}`);
 } else if (command === "analyze") {
   if (!values.run) throw new Error("analyze needs --run <folder>");
   const dir = path(values.run);
