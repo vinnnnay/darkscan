@@ -6,7 +6,14 @@ name: Deploy site
 on:
   push:
     branches: [main]
-    paths: ["apps/darkbench/**", "packages/schema/**", "packages/dashboard/**", "eval/**", "audits/**"]
+    paths:
+      - "apps/darkbench/**"
+      - "packages/schema/**"
+      - "packages/dashboard/**"
+      - "eval/**"
+      - "audits/**"
+      # A change to this workflow should republish too, or a deploy fix never reaches the site.
+      - ".github/workflows/pages.yml"
   schedule:
     - cron: "17 3 * * 1"
   workflow_dispatch:
