@@ -21,4 +21,8 @@ await build({ ...shared, entryPoints: [join(dir, "src/background.ts"), join(dir,
 for (const file of ["manifest.json", "src/popup.html"]) {
   await copyFile(join(dir, file), join(outdir, file.replace("src/", "")));
 }
+await mkdir(join(outdir, "icons"), { recursive: true });
+for (const size of [16, 48, 128]) {
+  await copyFile(join(dir, `icons/icon${size}.png`), join(outdir, `icons/icon${size}.png`));
+}
 console.log(`Extension built: ${outdir}\nLoad it with chrome://extensions → Developer mode → Load unpacked.`);

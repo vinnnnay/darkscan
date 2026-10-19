@@ -3,8 +3,31 @@
   "name": "DarkScan — dark pattern audit",
   "version": "0.1.0",
   "description": "Spots dark patterns banned by India's CCPA while you shop. Everything stays in your browser.",
-  "permissions": ["storage", "scripting", "tabs", "webNavigation"],
-  "optional_host_permissions": ["*://*/*"],
-  "background": { "service_worker": "background.js", "type": "module" },
-  "action": { "default_popup": "popup.html", "default_title": "DarkScan" }
+  "permissions": [
+    "storage",
+    "scripting",
+    "tabs",
+    "webNavigation"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "DarkScan",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }
