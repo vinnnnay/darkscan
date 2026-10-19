@@ -6,7 +6,7 @@ name: Deploy site
 on:
   push:
     branches: [main]
-    paths: ["apps/darkbench/**", "packages/schema/**", "packages/dashboard/**", "eval/**"]
+    paths: ["apps/darkbench/**", "packages/schema/**", "packages/dashboard/**", "eval/**", "audits/**"]
   schedule:
     - cron: "17 3 * * 1"
   workflow_dispatch:

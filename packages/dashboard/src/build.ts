@@ -4,7 +4,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
-import { renderDashboard, type Board, type Scores } from "./render.ts";
+import { renderDashboard, type Board, type Field, type Scores } from "./render.ts";
 
 const repo = process.env.GITHUB_REPOSITORY;
 const { values } = parseArgs({
@@ -34,11 +34,26 @@ for (const s of SOURCES) {
 }
 if (boards.length === 0) throw new Error("No eval results found. Run `npm run eval` first.");
 
+/** The field artifacts are optional: the page still builds for anyone who has not run a sweep. */
+async function readAudit<T>(name: string): Promise<T | null> {
+  try {
+    return JSON.parse(await readFile(join(root, "audits", name), "utf8")) as T;
+  } catch {
+    console.warn(`skipping audits/${name}: not found, so the real-shop panel will be partial`);
+    return null;
+  }
+}
+const field: Field = {
+  survey: await readAudit<Field["survey"]>("robots.json"),
+  sweep: await readAudit<Field["sweep"]>("sweep.json"),
+};
+
 await mkdir(outDir, { recursive: true });
 await writeFile(
   join(outDir, "index.html"),
   renderDashboard({
     boards,
+    field,
     generatedAt: new Date().toISOString(),
     commit: process.env.GITHUB_SHA ?? null,
     benchUrl: values["base-url"]!,

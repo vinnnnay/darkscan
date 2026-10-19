@@ -5,7 +5,19 @@ export type Row = { pattern: PatternId; tp: number; fp: number; fn: number; tn: 
 export type Scores = Partial<Record<"dev" | "test", Row[]>>;
 export type Board = { id: string; title: string; blurb: string; scores: Scores };
 
-export type DashboardInput = { boards: Board[]; generatedAt: string; commit: string | null; benchUrl: string; repoUrl: string };
+/**
+ * The real-shop field work, as audits/robots.json and audits/sweep.json hold it. Both say only
+ * what DarkScan was allowed to reach; neither carries a finding about a named shop, and this page
+ * must never add one.
+ */
+export type SurveyShop = { id: string; name: string; verdict: "crawlable" | "browse-only" | "closed"; probes: { allowed: boolean }[] };
+export type SweptShop = { id: string; name: string; outcome: "reached-goal" | "stopped" | "not-auditable" | "failed" };
+export type Field = {
+  survey: { date: string; shops: SurveyShop[] } | null;
+  sweep: { date: string; shops: SweptShop[]; totals: { shops: number; audited: number } } | null;
+};
+
+export type DashboardInput = { boards: Board[]; field: Field; generatedAt: string; commit: string | null; benchUrl: string; repoUrl: string };
 
 export const esc = (text: unknown) =>
   String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -31,8 +43,64 @@ function table(rows: Row[]): string {
   return `<div class="scroll"><table><thead><tr><th>Pattern</th><th>Precision</th><th>Recall</th><th>TP</th><th>FP</th><th>FN</th><th>Review</th></tr></thead><tbody>${body}<tr class="all"><th scope="row">All patterns</th>${cell(all.precision)}${cell(all.recall)}<td></td><td></td><td></td><td></td></tr></tbody></table></div>`;
 }
 
+const VERDICT_LABEL: Record<SurveyShop["verdict"], string> = {
+  crawlable: "Cart and checkout allowed",
+  "browse-only": "Product pages only",
+  closed: "Nothing allowed",
+};
+
+const OUTCOME_LABEL: Record<SweptShop["outcome"], string> = {
+  "reached-goal": "Walked the whole path",
+  stopped: "Stopped early",
+  "not-auditable": "Blocked outright",
+  failed: "Failed to load",
+};
+
+/** Green only where DarkScan got the whole way; a block is not a verdict on the shop, so it is neutral. */
+const outcomeTone = (outcome: SweptShop["outcome"]) => (outcome === "reached-goal" ? "good" : outcome === "stopped" ? "mid" : "");
+
+/**
+ * What the field work could reach. Deliberately no findings: one automated run cannot support
+ * saying a named company uses a dark pattern, so this panel reports access and nothing else.
+ */
+function fieldSection(field: Field): string {
+  const { survey, sweep } = field;
+  if (!survey && !sweep) return "";
+  const limited = survey ? survey.shops.filter((s) => s.verdict !== "crawlable").length : null;
+  const complete = sweep ? sweep.shops.filter((s) => s.outcome === "reached-goal").length : null;
+  const total = survey?.shops.length ?? sweep?.totals.shops ?? 0;
+
+  const tile = (label: string, big: string, sub: string) =>
+    `<div class="tile"><div class="label">${esc(label)}</div><div class="big">${esc(big)}</div><div class="sub">${esc(sub)}</div></div>`;
+  const tiles = [
+    limited === null ? "" : tile("Limit cart crawling", `${limited}/${total}`, "disallow a cart or checkout path in robots.txt"),
+    sweep ? tile("Could be audited", `${sweep.totals.audited}/${sweep.totals.shops}`, "served an automated browser at all") : "",
+    complete === null ? "" : tile("Audited end to end", `${complete}/${total}`, "reached a checkout form, account wall or payment page"),
+  ].join("");
+
+  const swept = new Map((sweep?.shops ?? []).map((s) => [s.id, s]));
+  const names = survey ? survey.shops : (sweep?.shops ?? []);
+  const rows = names
+    .map((shop) => {
+      const verdict = survey?.shops.find((s) => s.id === shop.id)?.verdict;
+      const run = swept.get(shop.id);
+      const tone = run ? outcomeTone(run.outcome) : "";
+      return `<tr><th scope="row">${esc(shop.name)}</th><td>${verdict ? esc(VERDICT_LABEL[verdict]) : "–"}</td><td${tone ? ` class="${tone}"` : ""}>${run ? esc(OUTCOME_LABEL[run.outcome]) : "–"}</td></tr>`;
+    })
+    .join("");
+
+  const dates = [survey && `survey ${esc(survey.date)}`, sweep && `sweep ${esc(sweep.date)}`].filter(Boolean).join(" · ");
+  return `<section id="shops"><h2>Real shops</h2>
+<p class="muted">How far DarkScan was allowed to get on 15 well-known Indian shops · ${dates}</p>
+<div class="notice"><strong>This is about access, not about any shop's conduct.</strong> It records what each site's <code>robots.txt</code> permits and whether the site served an automated browser. It says nothing about whether any shop uses a dark pattern, and no finding is attributed to a named shop anywhere on this page.</div>
+<div class="tiles">${tiles}</div>
+<div class="scroll"><table><thead><tr><th>Shop</th><th>robots.txt</th><th>One audit run</th></tr></thead><tbody>${rows}</tbody></table></div>
+<p class="muted">Most shops disallow the cart and checkout, which is where drip pricing and basket sneaking happen, so the automated route reaches them on very few sites. A person recording their own session is the way in that does not crawl.</p>
+</section>`;
+}
+
 export function renderDashboard(input: DashboardInput): string {
-  const { boards, generatedAt, commit, benchUrl, repoUrl } = input;
+  const { boards, field, generatedAt, commit, benchUrl, repoUrl } = input;
   const headline = boards
     .map((b) => {
       const t = b.scores.test ? overall(b.scores.test) : null;
@@ -67,9 +135,10 @@ main{max-width:920px;margin:0 auto;padding:24px 16px 64px}h1{font-size:1.6rem;ma
 <main>
 <h1>DarkScan dashboard</h1>
 <p class="muted">Scores against DarkBench's answer key · generated ${esc(generatedAt)}${commit ? ` · commit ${esc(commit.slice(0, 7))}` : ""} · <a href="${esc(benchUrl)}">try DarkBench</a> · <a href="${esc(repoUrl)}">source</a></p>
-<div class="notice"><strong>What this measures.</strong> Detectors are scored on a fake shop with planted patterns, not on real companies. The held-out split uses wording the detectors were never tuned on. Only "likely" findings count as detections; "review" ones need a human. Nothing here is a legal finding about any real site.</div>
+<div class="notice"><strong>What this measures.</strong> The scores below come from a fake shop with planted patterns, not from real companies. The held-out split uses wording the detectors were never tuned on. Only "likely" findings count as detections; "review" ones need a human. Nothing here is a legal finding about any real site.</div>
 <div class="tiles">${headline}</div>
 ${sections}
+${fieldSection(field)}
 <h2>Rerun</h2>
 <p>This page is rebuilt by a GitHub Actions workflow every week and on demand (Actions → Eval dashboard → Run workflow). Each run re-crawls all 50 variants and fails if any detector drops below its recorded baseline.</p>
 </main>

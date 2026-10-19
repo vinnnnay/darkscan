@@ -377,6 +377,11 @@ shops with fewer than 3 sessions as too few to generalise from, and reports coun
 dev and held-out, for the rules, the local model and the agent). It is published at `/dashboard/` next
 to DarkBench.
 
+It ends with a **real shops** panel built from `audits/`: how many of the 15 shops limit cart crawling in
+`robots.txt`, how many served an automated browser at all, and how many could be audited end to end. That
+panel is about *access only*. It carries no findings, and a test asserts that no pattern name can appear
+in it.
+
 ```bash
 npm run dashboard -- --out site/dashboard     # then open site/dashboard/index.html
 ```
