@@ -24,7 +24,7 @@ async function badge(tabId: number | undefined, findings: Finding[]) {
 }
 
 /** Starting an audit is the person's decision, per shop, and it is what grants access to the site. */
-async function start(origin: string): Promise<boolean> {
+async function start(origin: string, tabId?: number): Promise<boolean> {
   const granted = await chrome.permissions.request({ origins: [`${origin}/*`] });
   if (!granted) return false;
   await chrome.scripting.unregisterContentScripts({ ids: [origin] }).catch(() => {});
@@ -32,6 +32,8 @@ async function start(origin: string): Promise<boolean> {
     { id: origin, matches: [`${origin}/*`], js: ["content.js"], runAt: "document_idle", persistAcrossSessions: false },
   ]);
   await save(newSession(origin, new Date().toISOString()));
+  // A registered script only runs on the next load, and the person is looking at this page now.
+  if (tabId !== undefined) await chrome.scripting.executeScript({ target: { tabId }, files: ["content.js"] }).catch(() => {});
   return true;
 }
 
@@ -60,7 +62,7 @@ chrome.runtime.onMessage.addListener((message, sender, respond) => {
       const watching = (await chrome.scripting.getRegisteredContentScripts({ ids: [message.origin] })).length > 0;
       return respond({ watching, session, findings: session ? runRules(toRun(session)) : [] });
     }
-    if (message?.type === "start") return respond({ started: await start(message.origin) });
+    if (message?.type === "start") return respond({ started: await start(message.origin, message.tabId ?? sender.tab?.id) });
     if (message?.type === "stop") {
       await stop(message.origin, message.tabId);
       return respond({ stopped: true });

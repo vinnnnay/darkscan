@@ -25,7 +25,7 @@ function render(state: State) {
 <div class="row"><button class="primary" id="start">Audit this shop</button></div>
 <p class="muted">It will ask for permission for ${host} only.</p>`;
     document.getElementById("start")!.addEventListener("click", async () => {
-      const { started } = await chrome.runtime.sendMessage<{ started: boolean }>({ type: "start", origin });
+      const { started } = await chrome.runtime.sendMessage<{ started: boolean }>({ type: "start", origin, tabId: tab?.id });
       if (started) location.reload();
     });
     return;
