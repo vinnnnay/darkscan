@@ -19,7 +19,13 @@ export type Llm = {
 
 export const DEFAULT_MODEL = "qwen2.5:3b";
 
-export function ollama({ model = DEFAULT_MODEL, host = "http://127.0.0.1:11434", cacheDir }: LlmOptions = {}): Llm {
+/**
+ * Ollama on this machine, or wherever OLLAMA_HOST points: in a container the model runs in a
+ * service beside this one. Still a private address either way; nothing is sent to a vendor.
+ */
+export const DEFAULT_HOST = process.env.OLLAMA_HOST ?? "http://127.0.0.1:11434";
+
+export function ollama({ model = DEFAULT_MODEL, host = DEFAULT_HOST, cacheDir }: LlmOptions = {}): Llm {
   return {
     model,
     async ask(system, user, schema) {
@@ -61,7 +67,7 @@ export function ollama({ model = DEFAULT_MODEL, host = "http://127.0.0.1:11434",
 }
 
 /** True if Ollama is running and has the model pulled. */
-export async function ollamaReady(model = DEFAULT_MODEL, host = "http://127.0.0.1:11434"): Promise<boolean> {
+export async function ollamaReady(model = DEFAULT_MODEL, host = DEFAULT_HOST): Promise<boolean> {
   try {
     const res = await fetch(`${host}/api/tags`);
     const { models } = (await res.json()) as { models: { name: string }[] };

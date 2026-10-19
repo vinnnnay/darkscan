@@ -2,7 +2,7 @@ import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { expect, test, type Page } from "@playwright/test";
 import { chromium } from "playwright";
-import { captureStep } from "../packages/crawler/src/index.ts";
+import { captureStep, chromiumArgs } from "../packages/crawler/src/index.ts";
 import { detectAll } from "../packages/detectors/src/index.ts";
 import { SessionRecorder } from "../packages/session/src/index.ts";
 import { makeRedactor } from "../packages/session/src/redact.ts";
@@ -29,7 +29,7 @@ async function declinePopups(page: Page) {
 }
 
 test("records a person shopping, finds the dark patterns, keeps their secrets off disk, and stops at payment", async ({}, info) => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: chromiumArgs() });
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
   page.setDefaultTimeout(10_000); // a stuck action should fail fast and say which one
@@ -169,7 +169,7 @@ test("a link that opens in a new tab is followed", async ({}, info) => {
     res.end(req.url === "/b" ? "<h1>Second tab</h1>" : `<h1>Shop</h1><a href="/b" target="_blank">Open product</a>`);
   }).listen(0);
   const base = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: chromiumArgs() });
   try {
     const context = await browser.newContext();
     const page = await context.newPage();

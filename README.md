@@ -406,6 +406,46 @@ npm run survey           # real shops: what robots.txt allows (no crawling)
 npm run sweep            # real shops: one audit run each (slow, hits live sites)
 ```
 
+## Running it in Docker
+
+Nothing needs to be installed but Docker: not Node, not a browser, not Ollama.
+
+```bash
+docker compose up -d bench                 # the test shop on http://localhost:4173
+docker compose run --rm tools              # unit tests
+docker compose run --rm tools npm run eval -- --check        # crawl all 50 variants and score them
+docker compose run --rm tools npm run survey                 # real shops: robots.txt only
+docker compose run --rm tools npm run test:e2e               # browser tests
+```
+
+`docker compose run` starts the bench service first and waits for its health check, so the eval and
+the e2e suites find the shop at `http://bench:4173`. Runs, recipes, scores and audit write-ups
+appear in `runs/`, `recipes/`, `eval/` and `audits/` on the host, as they do without Docker.
+
+The language-model detectors need Ollama, which is a separate profile so the rule detectors cost
+nothing:
+
+```bash
+docker compose --profile llm up -d ollama
+docker compose exec ollama ollama pull qwen2.5:3b
+docker compose run --rm tools npm run eval -- --llm
+```
+
+Two images come out of one `Dockerfile`:
+
+| Target | Contains | Runs |
+|---|---|---|
+| `bench` | the static export and a 30-line server | the test shop, no browser, no `node_modules` |
+| `tools` | the workspace and Chromium | the crawler, agent, detectors, eval and field CLIs |
+
+Chromium cannot use its own sandbox as root, which is how it runs in the container, so the image
+sets `DARKSCAN_CHROMIUM_NO_SANDBOX=1` and the container is the boundary instead. **A desktop run
+keeps the sandbox**: the flag is read from the environment, never defaulted on, and a test asserts
+that only the exact value `1` turns it off.
+
+CI builds both images, runs the unit tests inside the tools image, and crawls the bench service, so
+the `Dockerfile` cannot rot unnoticed.
+
 ## Layout
 
 ```
@@ -425,6 +465,8 @@ recipes/           Saved site recipes (JSON)
 docs/              Participant guide and study protocol for recorded sessions
 start-recording.*  Double-click launchers for recording a session (Windows, Mac, Linux)
 e2e/               Browser tests: DarkBench variants and crawler evidence
+Dockerfile         Two images: the test shop, and the tools with a browser
+docker-compose.yml bench + tools, and Ollama behind an --llm profile
 ```
 
 ## Audit ethics

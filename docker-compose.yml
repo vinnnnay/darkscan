@@ -1,0 +1,47 @@
+# Runs the whole project without Node, a browser or Ollama installed on the host.
+#
+#   docker compose up -d bench                  the test shop on http://localhost:4173
+#   docker compose run --rm tools               unit tests
+#   docker compose run --rm tools npm run eval -- --base http://bench:4173 --check
+#   docker compose run --rm tools npm run survey            (real shops: robots.txt only)
+#   docker compose --profile llm up -d ollama   then: ... npm run eval -- --llm --base ...
+#
+# The audit CLIs write into ./runs, ./audits, ./recipes and ./eval on the host.
+services:
+  bench:
+    build:
+      context: .
+      target: bench
+    ports:
+      - "4173:4173"
+
+  tools:
+    build:
+      context: .
+      target: tools
+    depends_on:
+      bench:
+        condition: service_healthy
+    # Chromium needs more than the default 64MB of shared memory or tabs crash under load.
+    shm_size: 1gb
+    environment:
+      # Where the eval and e2e suites expect the test shop to be.
+      DARKBENCH_BASE: http://bench:4173
+      OLLAMA_HOST: http://ollama:11434
+    volumes:
+      - ./runs:/app/runs
+      - ./audits:/app/audits
+      - ./recipes:/app/recipes
+      - ./eval:/app/eval
+
+  # Only started with --profile llm. The model detectors need it; the rule detectors do not.
+  ollama:
+    image: ollama/ollama:0.12.3
+    profiles: ["llm"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  ollama:

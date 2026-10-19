@@ -1,0 +1,18 @@
+# Keep the build context small and never ship a host's installed modules or audit output.
+node_modules
+**/node_modules
+.git
+.github
+.next
+**/.next
+apps/darkbench/out
+runs
+traces
+test-results
+playwright-report
+.cache
+share
+site
+*.tsbuildinfo
+next-env.d.ts
+.env*

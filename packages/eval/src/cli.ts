@@ -23,7 +23,8 @@ import { regressions, score, toMarkdown, type Case, type Split, type SplitBaseli
 
 const { values } = parseArgs({
   options: {
-    base: { type: "string", default: "http://localhost:4173" },
+    // DARKBENCH_BASE lets the container point at the bench service without repeating --base.
+    base: { type: "string", default: process.env.DARKBENCH_BASE ?? "http://localhost:4173" },
     concurrency: { type: "string", default: "4" },
     variants: { type: "string" },
     from: { type: "string" },

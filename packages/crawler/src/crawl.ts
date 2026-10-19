@@ -47,6 +47,13 @@ export class TargetNotFound extends Error {
 const isLocal = (url: string) => ["localhost", "127.0.0.1"].includes(new URL(url).hostname);
 
 /**
+ * Chromium refuses its own sandbox when it runs as root, which is how it runs inside the project's
+ * container. There the container is the boundary, so the flag is set there and nowhere else: it is
+ * never on by default, and a desktop run keeps the sandbox.
+ */
+export const chromiumArgs = (): string[] => (process.env.DARKSCAN_CHROMIUM_NO_SANDBOX === "1" ? ["--no-sandbox"] : []);
+
+/**
  * One browser session that records evidence after every action. A recipe replays through
  * it step by step, and the recipe agent drives it one decision at a time.
  */
@@ -83,7 +90,7 @@ export class AuditSession {
     const dir = join(options.outDir, id);
     await mkdir(dir, { recursive: true });
 
-    const browser = await chromium.launch({ headless: options.headless ?? true });
+    const browser = await chromium.launch({ headless: options.headless ?? true, args: chromiumArgs() });
     // Identify ourselves honestly, on top of a normal browser string so pages render as for a shopper.
     const userAgent = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${browser.version()} Safari/537.36 ${USER_AGENT_SUFFIX}`;
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: "en-IN", userAgent });

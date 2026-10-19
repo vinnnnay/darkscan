@@ -1,5 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { detectBlock, detectRefusal } from "./block.ts";
+import { chromiumArgs } from "./crawl.ts";
 import { RobotsPolicy, isAllowed, parseRobots } from "./robots.ts";
 
 describe("parseRobots / isAllowed", () => {
@@ -122,5 +123,28 @@ describe("RobotsPolicy caching", () => {
     expect(await policy.check("https://s.test/cart")).toEqual({ allowed: false, why: "disallowed" });
     expect(await policy.check("https://s.test/shoes")).toEqual({ allowed: true });
     expect(parses).toBe(1);
+  });
+});
+
+describe("chromiumArgs", () => {
+  const set = (value: string | undefined) => {
+    if (value === undefined) delete process.env.DARKSCAN_CHROMIUM_NO_SANDBOX;
+    else process.env.DARKSCAN_CHROMIUM_NO_SANDBOX = value;
+  };
+  const original = process.env.DARKSCAN_CHROMIUM_NO_SANDBOX;
+  afterEach(() => set(original));
+
+  it("keeps Chromium's sandbox on unless the container explicitly asks otherwise", () => {
+    set(undefined);
+    expect(chromiumArgs()).toEqual([]);
+    set("0");
+    expect(chromiumArgs()).toEqual([]);
+    set("true");
+    expect(chromiumArgs()).toEqual([]);
+  });
+
+  it("drops the sandbox only for the exact opt-in the image sets", () => {
+    set("1");
+    expect(chromiumArgs()).toEqual(["--no-sandbox"]);
   });
 });

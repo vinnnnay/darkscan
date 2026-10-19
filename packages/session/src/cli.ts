@@ -11,6 +11,7 @@
 import { writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
+import { chromiumArgs } from "@darkscan/crawler";
 import { DEFAULT_MODEL, detectAll, detectWithLlm, ollama, ollamaReady } from "@darkscan/detectors";
 import { writeReport } from "@darkscan/report";
 import type { AuditRun } from "@darkscan/schema";
@@ -69,7 +70,7 @@ if (command === "record") {
   const start = new URL(values.url);
   if (!/^https?:$/.test(start.protocol)) throw new Error("--url must be an http(s) address");
 
-  const browser = await chromium.launch({ headless: values.headless });
+  const browser = await chromium.launch({ headless: values.headless, args: chromiumArgs() });
   const context = await browser.newContext({ viewport: values.headless ? { width: 1280, height: 900 } : null, locale: "en-IN" });
   const page = await context.newPage();
   const recorder = await SessionRecorder.attach(context, page, {

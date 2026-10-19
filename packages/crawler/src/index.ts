@@ -1,4 +1,4 @@
-export { AuditSession, NotAuditable, PAYMENT, StopAudit, TargetNotFound, runAudit, type AuditOptions } from "./crawl.ts";
+export { AuditSession, NotAuditable, PAYMENT, StopAudit, TargetNotFound, chromiumArgs, runAudit, type AuditOptions } from "./crawl.ts";
 export { captureStep, type CaptureOptions, type Privacy } from "./capture.ts";
 export { describeDialog, openDialogText } from "./collect.ts";
 export {
