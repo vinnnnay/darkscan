@@ -17,7 +17,7 @@ judgements, and a human verifies every finding before it is published.
 | 2 | Playwright crawler + price/cart tracker | ✅ |
 | 3 | Rule detectors + precision/recall evaluation | ✅ |
 | 4 | Local-LLM detectors + recipe agent with self-repair | ✅ |
-| 5 | Real-site audits + evidence reports | ✅ reports and a bring-your-own-session mode; one shop fully audited, the rest limited by robots.txt or bot protection (see "Trying it on real shops") |
+| 5 | Real-site audits + evidence reports | ✅ scripted survey and sweep over 15 shops, evidence reports, bring-your-own-session (see "Trying it on real shops") |
 | 6 | Dashboard + rerun via GitHub Actions | ✅ see "Dashboard" |
 
 ## DarkBench
@@ -245,32 +245,71 @@ Two bugs found by this benchmark:
 
 ## Trying it on real shops
 
-One run per shop on 2026-10-18, with the rules above: `robots.txt` obeyed, a few seconds between actions, a user
-agent that names DarkScan, guest browsing only, stop before payment. No findings about any company are published.
+Two commands do the field work. Neither runs in CI: they touch other people's sites, so they are run by hand.
 
-| Shop | Result |
+```bash
+npm run survey                 # fetch each shop's robots.txt → audits/robots.md
+npm run sweep                  # one audit run per shop       → audits/sweep.md
+npm run sweep -- --render      # rebuild the write-up from the last run, visiting nobody
+```
+
+### Which shops may be audited at all
+
+[audits/robots.md](audits/robots.md) comes from `npm run survey`, which fetches nothing but `robots.txt`, one
+request per host. On 2026-10-19, **11 of 15 well-known Indian shops disallowed at least one of the cart or
+checkout paths tested**; only Myntra, Snapdeal, Nykaa and Tata CLiQ allowed all of them. DarkScan obeys
+`robots.txt`, so on the rest it can audit product pages but not the cart or checkout, where drip pricing and
+basket sneaking live.
+
+The tested URLs are candidates, not necessarily a shop's real cart URL, so the survey also lists every cart-like
+`Disallow` rule that applies to us. That is how it caught what the hand-written survey had missed: FirstCry's
+`www` host allows everything, but its cart and payment live on `checkout.firstcry.com`, which disallows both.
+The sweep then walked into exactly that wall, which is the survey doing its job.
+
+### What one run on each shop did
+
+[audits/sweep.md](audits/sweep.md) comes from `npm run sweep`: one visit per shop, 2.5s between actions, guest
+browsing only, no account ever created, and a stop before any payment control.
+
+| 2026-10-19 | |
 |---|---|
-| **Snapdeal** | Learned the whole path on its own (open a product, add to cart, proceed to checkout), saved it as [recipes/snapdeal.json](recipes/snapdeal.json), and replayed it on the live site twice. It stopped when checkout opened Razorpay's overlay. No findings. |
-| FirstCry | Opened a department, then a product, ran the urgency probe and added it to the cart. Its cart lives on `checkout.firstcry.com`, whose `robots.txt` disallows `/pay`, so DarkScan **refused to load it** and stopped. Product pages are auditable, its cart is not. |
-| Tata CLiQ | Navigation needs the language model ("Categories" is a menu button, not a link), and the product page wants a size or variant choice that is now detected, but the 3B model's route through the menus isn't reliable. Reached a product and clicked "Add To Bag"; not completed. |
-| Nykaa, Myntra | **Not auditable.** The connection is dropped on the first request, which is typical bot protection. DarkScan leaves such sites alone. |
+| Shops that could be audited at all | **10 / 15** |
+| Walked the whole path to a checkout form, account wall or payment page | **1** — Snapdeal |
+| Blocked outright: connection dropped or HTTP 403 | 5 — Myntra, Nykaa, Croma, AJIO, Pepperfry |
+| Stopped by `robots.txt` on the way to the cart | 2 — FirstCry, Reliance Digital |
+| Stopped because no rule fit the page and no model was running | 4 |
+| Failed on a 60-second navigation timeout | 2 |
 
-What the real shops taught the agent, each now covered by a test: product cards and "ADD TO CART" buttons that are
+Snapdeal is the one shop the agent audits end to end: it opened a product, chose a variant, added it to the cart,
+proceeded to checkout, and stopped when Razorpay's overlay appeared. That path is saved as
+[recipes/snapdeal.json](recipes/snapdeal.json) and replays with `npm run audit`.
+
+**No finding is attributed to a shop**, here or in `audits/sweep.md`. One automated run is not enough to say a
+named company uses a dark pattern: a person has to check the evidence, independent runs have to agree, and the
+shop should get a chance to respond ([docs/STUDY.md](docs/STUDY.md)). This pass raised no findings at all, which
+says more about how far it got than about the shops — a run that never reaches the cart says nothing about the cart.
+
+### What the real shops broke
+
+Three bugs in DarkScan itself, each now covered by a test:
+
+1. **A `robots.txt` we could not read was reported as one that disallows us**, blaming the shop for our own failed
+   fetch. The policy now separates "disallowed" from "could not be read" and says which. Decathlon exposed it: the
+   survey read its rules at 15s while the crawler gave up at 8s, so the two disagreed. Both now share one fetch.
+2. **A page that navigated while the crawler was reading its text killed the run** ("execution context was
+   destroyed"). The read settles and retries once; Amazon.in gets past it.
+3. **Real sites were held to Playwright's 30-second navigation default.** Decathlon and Lenskart both needed
+   longer, so real sites now get 60 seconds, and Decathlon's run went from 1 step to 16.
+
+Earlier passes taught the agent, each also covered by a test: product cards and "ADD TO CART" buttons that are
 plain `div`s; labels that CSS shows in uppercase; sizes that must be chosen before adding; links that open in a new
 tab; popups whose only "button" is a promotional link; a payment provider's overlay appearing on "Proceed to
 checkout"; a footer that lists "Net Banking" as an accepted method; "Remove all filters" looking like a cart row. A
 search box and a newsletter box once made a product page look like a checkout form and produced a false "success";
 checkout now needs address-like fields and an item that is really in the cart.
 
-**`robots.txt` limits how many shops can be audited at all.** Of 15 well-known Indian shops, 10 disallow at least one
-cart or checkout URL I tested for generic crawlers (for Amazon.in and Flipkart it is their real cart URL; also Croma,
-Ajio, Reliance Digital, boAt, Bewakoof, Lenskart, Decathlon, Pepperfry). Only Myntra, Snapdeal, Nykaa, Tata CLiQ and
-FirstCry allowed everything tested, and two of those block automated browsers outright. DarkScan obeys `robots.txt`,
-so on most shops it can only audit product pages, not the cart or checkout, where drip pricing and basket sneaking live.
-FirstCry is an example the survey missed: its `www` host allowed everything, but its checkout host does not.
-
-The decision taken: **keep strict compliance and audit a few shops well** (above), and add a mode that does not crawl
-at all, where a person does the shopping. That is the next section.
+The decision taken: **keep strict compliance and audit the few shops that allow it**, and add a mode that does not
+crawl at all, where a person does the shopping. That is the next section.
 
 ## Reports
 
@@ -358,6 +397,8 @@ npm test                 # unit tests
 npm run build:bench      # static export to apps/darkbench/out
 npx playwright install chromium
 npm run test:e2e         # browser tests against the built site
+npm run survey           # real shops: what robots.txt allows (no crawling)
+npm run sweep            # real shops: one audit run each (slow, hits live sites)
 ```
 
 ## Layout
@@ -372,7 +413,9 @@ packages/session   Bring-your-own-session: record a person shopping, redaction, 
 packages/detectors Rule detectors and local-LLM detectors: run evidence → findings
 packages/eval      Crawl every DarkBench variant and score precision/recall
 packages/dashboard Static dashboard built from the eval scores
+packages/field     Real shops: the robots.txt survey and the one-run-per-shop sweep
 eval/              Latest scores and the CI regression baselines
+audits/            Generated: which real shops may be audited, and how a run on each one went
 recipes/           Saved site recipes (JSON)
 docs/              Participant guide and study protocol for recorded sessions
 start-recording.*  Double-click launchers for recording a session (Windows, Mac, Linux)

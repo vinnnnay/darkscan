@@ -1,0 +1,504 @@
+{
+  "date": "2026-10-19",
+  "shops": [
+    {
+      "id": "amazon-in",
+      "name": "Amazon.in",
+      "home": {
+        "label": "home",
+        "url": "https://www.amazon.in/",
+        "origin": "https://www.amazon.in",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.amazon.in/gp/cart/view.html",
+          "origin": "https://www.amazon.in",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.amazon.in/gp/buy/spc/handlers/display.html",
+          "origin": "https://www.amazon.in",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [
+        "/exec/obidos/dt/assoc/handle-buy-box",
+        "/exec/obidos/handle-buy-box",
+        "/gp/cart",
+        "/gp/legacy-handle-buy-box.html"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "flipkart",
+      "name": "Flipkart",
+      "home": {
+        "label": "home",
+        "url": "https://www.flipkart.com/",
+        "origin": "https://www.flipkart.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.flipkart.com/viewcart",
+          "origin": "https://www.flipkart.com",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.flipkart.com/checkout/init",
+          "origin": "https://www.flipkart.com",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "myntra",
+      "name": "Myntra",
+      "home": {
+        "label": "home",
+        "url": "https://www.myntra.com/",
+        "origin": "https://www.myntra.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.myntra.com/checkout/cart",
+          "origin": "https://www.myntra.com",
+          "status": "ok",
+          "allowed": true
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.myntra.com/checkout/address",
+          "origin": "https://www.myntra.com",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [
+        "*cart.p*",
+        "*checkout-address*",
+        "*checkout-login*",
+        "*checkout_page_tracker*",
+        "*/buy1-get1-offer/*",
+        "*/x-videos-duffle-bag/*"
+      ],
+      "verdict": "crawlable"
+    },
+    {
+      "id": "snapdeal",
+      "name": "Snapdeal",
+      "home": {
+        "label": "home",
+        "url": "https://www.snapdeal.com/",
+        "origin": "https://www.snapdeal.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.snapdeal.com/cart",
+          "origin": "https://www.snapdeal.com",
+          "status": "ok",
+          "allowed": true
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.snapdeal.com/checkout",
+          "origin": "https://www.snapdeal.com",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [],
+      "verdict": "crawlable"
+    },
+    {
+      "id": "nykaa",
+      "name": "Nykaa",
+      "home": {
+        "label": "home",
+        "url": "https://www.nykaa.com/",
+        "origin": "https://www.nykaa.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.nykaa.com/cart",
+          "origin": "https://www.nykaa.com",
+          "status": "ok",
+          "allowed": true
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.nykaa.com/checkout",
+          "origin": "https://www.nykaa.com",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [
+        "/simplebundle/cart/addtocartpopup/bundle_id/"
+      ],
+      "verdict": "crawlable"
+    },
+    {
+      "id": "tatacliq",
+      "name": "Tata CLiQ",
+      "home": {
+        "label": "home",
+        "url": "https://www.tatacliq.com/",
+        "origin": "https://www.tatacliq.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.tatacliq.com/mybag",
+          "origin": "https://www.tatacliq.com",
+          "status": "ok",
+          "allowed": true
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.tatacliq.com/checkout",
+          "origin": "https://www.tatacliq.com",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [],
+      "verdict": "crawlable"
+    },
+    {
+      "id": "firstcry",
+      "name": "FirstCry",
+      "home": {
+        "label": "home",
+        "url": "https://www.firstcry.com/",
+        "origin": "https://www.firstcry.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.firstcry.com/cart",
+          "origin": "https://www.firstcry.com",
+          "status": "ok",
+          "allowed": true
+        },
+        {
+          "label": "cart",
+          "url": "https://checkout.firstcry.com/cart",
+          "origin": "https://checkout.firstcry.com",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://checkout.firstcry.com/pay",
+          "origin": "https://checkout.firstcry.com",
+          "status": "ok",
+          "allowed": false
+        }
+      ],
+      "cartRules": [],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "croma",
+      "name": "Croma",
+      "home": {
+        "label": "home",
+        "url": "https://www.croma.com/",
+        "origin": "https://www.croma.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.croma.com/cart",
+          "origin": "https://www.croma.com",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.croma.com/checkout",
+          "origin": "https://www.croma.com",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [
+        "/cart"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "ajio",
+      "name": "AJIO",
+      "home": {
+        "label": "home",
+        "url": "https://www.ajio.com/",
+        "origin": "https://www.ajio.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.ajio.com/bag",
+          "origin": "https://www.ajio.com",
+          "status": "ok",
+          "allowed": true
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.ajio.com/checkout",
+          "origin": "https://www.ajio.com",
+          "status": "ok",
+          "allowed": false
+        }
+      ],
+      "cartRules": [
+        "/cart*",
+        "/checkout*",
+        "/order/"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "reliance-digital",
+      "name": "Reliance Digital",
+      "home": {
+        "label": "home",
+        "url": "https://www.reliancedigital.in/",
+        "origin": "https://www.reliancedigital.in",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.reliancedigital.in/cart",
+          "origin": "https://www.reliancedigital.in",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.reliancedigital.in/checkout",
+          "origin": "https://www.reliancedigital.in",
+          "status": "ok",
+          "allowed": false
+        }
+      ],
+      "cartRules": [
+        "/cart",
+        "/checkout"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "boat",
+      "name": "boAt",
+      "home": {
+        "label": "home",
+        "url": "https://www.boat-lifestyle.com/",
+        "origin": "https://www.boat-lifestyle.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.boat-lifestyle.com/cart",
+          "origin": "https://www.boat-lifestyle.com",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.boat-lifestyle.com/checkouts",
+          "origin": "https://www.boat-lifestyle.com",
+          "status": "ok",
+          "allowed": false
+        }
+      ],
+      "cartRules": [
+        "/cart",
+        "/checkout"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "bewakoof",
+      "name": "Bewakoof",
+      "home": {
+        "label": "home",
+        "url": "https://www.bewakoof.com/",
+        "origin": "https://www.bewakoof.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.bewakoof.com/cart",
+          "origin": "https://www.bewakoof.com",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.bewakoof.com/checkout",
+          "origin": "https://www.bewakoof.com",
+          "status": "ok",
+          "allowed": false
+        }
+      ],
+      "cartRules": [
+        "/cart",
+        "/checkout"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "lenskart",
+      "name": "Lenskart",
+      "home": {
+        "label": "home",
+        "url": "https://www.lenskart.com/",
+        "origin": "https://www.lenskart.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.lenskart.com/cart",
+          "origin": "https://www.lenskart.com",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.lenskart.com/checkout",
+          "origin": "https://www.lenskart.com",
+          "status": "ok",
+          "allowed": false
+        }
+      ],
+      "cartRules": [
+        "/cart",
+        "/checkout"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "decathlon",
+      "name": "Decathlon",
+      "home": {
+        "label": "home",
+        "url": "https://www.decathlon.in/",
+        "origin": "https://www.decathlon.in",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.decathlon.in/cart",
+          "origin": "https://www.decathlon.in",
+          "status": "ok",
+          "allowed": false
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.decathlon.in/checkout",
+          "origin": "https://www.decathlon.in",
+          "status": "ok",
+          "allowed": true
+        }
+      ],
+      "cartRules": [
+        "/*?order=",
+        "/*&order=",
+        "/*controller=cart",
+        "/*controller=order",
+        "/*controller=order-slip",
+        "/*controller=order-detail",
+        "/*controller=order-follow",
+        "/*controller=order-return",
+        "/*controller=order-confirmation",
+        "/*controller=pdf-order-return",
+        "/*controller=pdf-order-slip",
+        "/cart",
+        "/order-history",
+        "/order-follow",
+        "/order",
+        "/order-confirmation",
+        "/account/order-returns",
+        "/payment",
+        "/payment-summary",
+        "/payment-verification"
+      ],
+      "verdict": "browse-only"
+    },
+    {
+      "id": "pepperfry",
+      "name": "Pepperfry",
+      "home": {
+        "label": "home",
+        "url": "https://www.pepperfry.com/",
+        "origin": "https://www.pepperfry.com",
+        "status": "ok",
+        "allowed": true
+      },
+      "probes": [
+        {
+          "label": "cart",
+          "url": "https://www.pepperfry.com/cart",
+          "origin": "https://www.pepperfry.com",
+          "status": "ok",
+          "allowed": true
+        },
+        {
+          "label": "checkout",
+          "url": "https://www.pepperfry.com/checkout",
+          "origin": "https://www.pepperfry.com",
+          "status": "ok",
+          "allowed": false
+        }
+      ],
+      "cartRules": [
+        "/checkout/",
+        "/cart/",
+        "/checkout*"
+      ],
+      "verdict": "browse-only"
+    }
+  ]
+}

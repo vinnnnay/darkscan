@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { detectBlock, detectRefusal } from "./block.ts";
-import { isAllowed, parseRobots } from "./robots.ts";
+import { RobotsPolicy, isAllowed, parseRobots } from "./robots.ts";
 
 describe("parseRobots / isAllowed", () => {
   const robots = `
@@ -79,5 +79,48 @@ describe("detectBlock", () => {
 
   it("accepts an ordinary page", () => {
     expect(detectBlock(200, "Earbuds Pro ₹1,299\nAdd to cart")).toBeNull();
+  });
+});
+
+describe("RobotsPolicy", () => {
+  const policy = (status: "ok" | "none" | "unreachable", text = "") => new RobotsPolicy(async () => ({ status, text }));
+
+  it("separates a site that disallows us from one whose robots.txt we could not read", async () => {
+    const rules = "User-agent: *\nDisallow: /cart\n";
+    expect(await policy("ok", rules).check("https://s.test/cart")).toEqual({ allowed: false, why: "disallowed" });
+    expect(await policy("ok", rules).check("https://s.test/shoes")).toEqual({ allowed: true });
+    expect(await policy("unreachable").check("https://s.test/cart")).toEqual({ allowed: false, why: "unreadable" });
+  });
+
+  it("allows everything when the host has no robots.txt", async () => {
+    expect(await policy("none").check("https://s.test/cart")).toEqual({ allowed: true });
+  });
+
+  it("asks each origin once, however many URLs are checked", async () => {
+    const origins: string[] = [];
+    const p = new RobotsPolicy(async (origin) => (origins.push(origin), { status: "none", text: "" }));
+    await p.check("https://s.test/a");
+    await p.check("https://s.test/b");
+    await p.check("https://checkout.s.test/c");
+    expect(origins).toEqual(["https://s.test", "https://checkout.s.test"]);
+  });
+});
+
+describe("RobotsPolicy caching", () => {
+  it("parses a robots.txt once per origin, however many URLs it then checks", async () => {
+    let parses = 0;
+    // check() touches .text only when it has to parse, so counting reads counts parses.
+    const doc = {
+      status: "ok" as const,
+      get text() {
+        parses++;
+        return "User-agent: *\nDisallow: /cart\n";
+      },
+    };
+    const policy = new RobotsPolicy(async () => doc);
+
+    expect(await policy.check("https://s.test/cart")).toEqual({ allowed: false, why: "disallowed" });
+    expect(await policy.check("https://s.test/shoes")).toEqual({ allowed: true });
+    expect(parses).toBe(1);
   });
 });

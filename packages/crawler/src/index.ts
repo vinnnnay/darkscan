@@ -11,3 +11,15 @@ export {
   type Target,
 } from "./recipe.ts";
 export { chooseDecline, parseCartRows, parsePriceText } from "./extract.ts";
+export {
+  ROBOTS_TIMEOUT_MS,
+  RobotsPolicy,
+  fetchRobotsDoc,
+  isAllowed,
+  parseRobots,
+  type RobotsDoc,
+  type RobotsLoader,
+  type RobotsStatus,
+  type RobotsVerdict,
+  type Rule,
+} from "./robots.ts";

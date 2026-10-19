@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-19",
+  "delayMs": 2500,
+  "model": null,
+  "shops": [
+    {
+      "id": "amazon-in",
+      "name": "Amazon.in",
+      "outcome": "stopped",
+      "reached": "listing",
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "No rule fits this listing page, and no model is available.",
+      "runId": "amazon-in-2026-10-19T05-17-05-453Z"
+    },
+    {
+      "id": "flipkart",
+      "name": "Flipkart",
+      "outcome": "stopped",
+      "reached": "listing",
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "No rule fits this listing page, and no model is available.",
+      "runId": "flipkart-2026-10-19T05-17-23-069Z"
+    },
+    {
+      "id": "myntra",
+      "name": "Myntra",
+      "outcome": "not-auditable",
+      "reached": null,
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "Not auditable: the site closed the connection (ERR_HTTP2_PROTOCOL_ERROR), which is typical of bot protection",
+      "runId": "myntra-2026-10-19T05-18-43-960Z"
+    },
+    {
+      "id": "snapdeal",
+      "name": "Snapdeal",
+      "outcome": "reached-goal",
+      "reached": "payment",
+      "steps": 7,
+      "modelCalls": 0,
+      "stop": "Reached payment: a payment page or a payment provider's checkout overlay. Audits stop before payment.",
+      "runId": "snapdeal-2026-10-19T05-18-44-817Z"
+    },
+    {
+      "id": "nykaa",
+      "name": "Nykaa",
+      "outcome": "not-auditable",
+      "reached": null,
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "Not auditable: the site closed the connection (ERR_HTTP2_PROTOCOL_ERROR), which is typical of bot protection",
+      "runId": "nykaa-2026-10-19T05-20-50-507Z"
+    },
+    {
+      "id": "tatacliq",
+      "name": "Tata CLiQ",
+      "outcome": "stopped",
+      "reached": "listing",
+      "steps": 3,
+      "modelCalls": 0,
+      "stop": "No rule fits this listing page, and no model is available.",
+      "runId": "tatacliq-2026-10-19T05-20-54-785Z"
+    },
+    {
+      "id": "firstcry",
+      "name": "FirstCry",
+      "outcome": "stopped",
+      "reached": "product",
+      "steps": 6,
+      "modelCalls": 0,
+      "stop": "Stopped: robots.txt disallows https://checkout.firstcry.com/pay",
+      "runId": "firstcry-2026-10-19T05-22-14-785Z"
+    },
+    {
+      "id": "croma",
+      "name": "Croma",
+      "outcome": "not-auditable",
+      "reached": null,
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "Not auditable: HTTP 403: the site refused access",
+      "runId": "croma-2026-10-19T05-23-27-891Z"
+    },
+    {
+      "id": "ajio",
+      "name": "AJIO",
+      "outcome": "not-auditable",
+      "reached": null,
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "Not auditable: HTTP 403: the site refused access",
+      "runId": "ajio-2026-10-19T05-23-31-570Z"
+    },
+    {
+      "id": "reliance-digital",
+      "name": "Reliance Digital",
+      "outcome": "stopped",
+      "reached": "listing",
+      "steps": 3,
+      "modelCalls": 0,
+      "stop": "Stopped: robots.txt disallows https://www.reliancedigital.in/collection/mobiles/?internal_source=navigation",
+      "runId": "reliance-digital-2026-10-19T05-23-33-093Z"
+    },
+    {
+      "id": "boat",
+      "name": "boAt",
+      "outcome": "failed",
+      "reached": "product",
+      "steps": 2,
+      "modelCalls": 0,
+      "stop": "page.reload: Timeout 60000ms exceeded.",
+      "runId": "boat-2026-10-19T05-24-01-131Z"
+    },
+    {
+      "id": "bewakoof",
+      "name": "Bewakoof",
+      "outcome": "stopped",
+      "reached": "listing",
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "No rule fits this listing page, and no model is available.",
+      "runId": "bewakoof-2026-10-19T05-26-38-171Z"
+    },
+    {
+      "id": "lenskart",
+      "name": "Lenskart",
+      "outcome": "failed",
+      "reached": null,
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "page.goto: Timeout 60000ms exceeded.",
+      "runId": "lenskart-2026-10-19T05-27-09-253Z"
+    },
+    {
+      "id": "decathlon",
+      "name": "Decathlon",
+      "outcome": "stopped",
+      "reached": "listing",
+      "steps": 16,
+      "modelCalls": 0,
+      "stop": "Gave up after 14 actions.",
+      "runId": "decathlon-2026-10-19T05-28-10-274Z"
+    },
+    {
+      "id": "pepperfry",
+      "name": "Pepperfry",
+      "outcome": "not-auditable",
+      "reached": null,
+      "steps": 1,
+      "modelCalls": 0,
+      "stop": "Not auditable: HTTP 403: the site refused access",
+      "runId": "pepperfry-2026-10-19T05-30-09-582Z"
+    }
+  ],
+  "totals": {
+    "shops": 15,
+    "audited": 10,
+    "likely": 0,
+    "review": 0,
+    "shopsWithAny": 0
+  }
+}

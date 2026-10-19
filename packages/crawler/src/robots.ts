@@ -1,4 +1,4 @@
-type Rule = { allow: boolean; pattern: string };
+export type Rule = { allow: boolean; pattern: string };
 
 const AGENT = "darkscan";
 
@@ -50,25 +50,55 @@ export function isAllowed(rules: Rule[], pathAndQuery: string): boolean {
   return best ? best.allow : true;
 }
 
-/** Fetches and caches robots.txt per origin. Fails closed: if it can't be read, nothing is allowed. */
-export class RobotsPolicy {
-  private cache = new Map<string, Promise<Rule[] | "deny-all">>();
+/** What a host said when asked for its robots.txt. "none" is a 4xx: nothing is disallowed. */
+export type RobotsStatus = "ok" | "none" | "unreachable";
+export type RobotsDoc = { status: RobotsStatus; text: string };
+export type RobotsLoader = (origin: string) => Promise<RobotsDoc>;
 
-  allowed = async (url: string): Promise<boolean> => {
-    const { origin, pathname, search } = new URL(url);
+/** One timeout for every caller, so the survey predicts what a crawl will actually do. */
+export const ROBOTS_TIMEOUT_MS = 15_000;
+
+/** One GET per origin, identifying ourselves. RFC 9309: 4xx means allowed, 5xx means stay out. */
+export const fetchRobotsDoc: RobotsLoader = async (origin) => {
+  try {
+    const res = await fetch(`${origin}/robots.txt`, { signal: AbortSignal.timeout(ROBOTS_TIMEOUT_MS), headers: { "user-agent": "DarkScan/0.1" } });
+    if (res.status >= 500) return { status: "unreachable", text: "" };
+    if (!res.ok) return { status: "none", text: "" };
+    return { status: "ok", text: await res.text() };
+  } catch {
+    return { status: "unreachable", text: "" };
+  }
+};
+
+/**
+ * Why we are not fetching a URL. A robots.txt we could not read is not the same as one that
+ * disallows us: both keep us out, but only one is something the site asked for, and a report
+ * that confuses them is wrong about the shop.
+ */
+export type RobotsVerdict = { allowed: true } | { allowed: false; why: "disallowed" | "unreadable" };
+
+/** Caches robots.txt per origin. Fails closed: if it cannot be read, nothing is allowed. */
+export class RobotsPolicy {
+  private cache = new Map<string, Promise<RobotsDoc>>();
+  /** Parsed once per origin: a crawl checks every navigation, and robots.txt files run to pages. */
+  private rules = new Map<string, Rule[]>();
+  private load: RobotsLoader;
+
+  constructor(load: RobotsLoader = fetchRobotsDoc) {
+    this.load = load;
+  }
+
+  doc = (origin: string): Promise<RobotsDoc> => {
     if (!this.cache.has(origin)) this.cache.set(origin, this.load(origin));
-    const rules = await this.cache.get(origin)!;
-    return rules === "deny-all" ? false : isAllowed(rules, pathname + search);
+    return this.cache.get(origin)!;
   };
 
-  private async load(origin: string): Promise<Rule[] | "deny-all"> {
-    try {
-      const res = await fetch(`${origin}/robots.txt`, { signal: AbortSignal.timeout(8000), headers: { "user-agent": "DarkScan/0.1" } });
-      if (res.status >= 500) return "deny-all";
-      if (!res.ok) return []; // 4xx: no robots.txt, everything is allowed
-      return parseRobots(await res.text());
-    } catch {
-      return "deny-all";
-    }
-  }
+  check = async (url: string): Promise<RobotsVerdict> => {
+    const { origin, pathname, search } = new URL(url);
+    const doc = await this.doc(origin);
+    if (doc.status === "unreachable") return { allowed: false, why: "unreadable" };
+    if (doc.status === "none") return { allowed: true };
+    if (!this.rules.has(origin)) this.rules.set(origin, parseRobots(doc.text));
+    return isAllowed(this.rules.get(origin)!, pathname + search) ? { allowed: true } : { allowed: false, why: "disallowed" };
+  };
 }

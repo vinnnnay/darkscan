@@ -9,7 +9,7 @@
     {
       "do": "click",
       "target": {
-        "text": "Life Like A10 PRO 2 Bluetooth Earbuds In Ear TWS Black"
+        "text": "AKLINA Gold Religious Pendant With Chain ( Pack of 1 )"
       },
       "why": "open a product"
     },
@@ -25,11 +25,19 @@
     {
       "do": "click",
       "target": {
+        "text": "Gold",
+        "exact": true
+      },
+      "why": "choose size/variant \"Gold\" first"
+    },
+    {
+      "do": "click",
+      "target": {
         "text": "ADD TO CART",
         "exact": true
       },
       "why": "add the product to the cart",
-      "adds": "Life Like A10 PRO 2 Bluetooth Earbuds In Ear TWS Black"
+      "adds": "AKLINA Gold Religious Pendant With Chain ( Pack of 1 )"
     },
     {
       "do": "click",

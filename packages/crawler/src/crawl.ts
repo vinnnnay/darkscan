@@ -17,6 +17,11 @@ export type AuditOptions = {
   politeDelayMs?: number;
   /** Lets the recipe fill sign-up forms. Only for DarkBench, never for real sites. */
   allowAccountCreation?: boolean;
+  /**
+   * How long a single navigation may take. Big retail sites on a home connection are often
+   * slower than Playwright's 30s default, and a timeout there costs a whole audit.
+   */
+  navigationTimeoutMs?: number;
   /** Skip pages robots.txt disallows. On by default for every host except localhost. */
   respectRobots?: boolean;
 };
@@ -50,8 +55,8 @@ export class AuditSession {
   /** Tabs opened since the last action, newest last. A link that opens in a new tab is followed. */
   readonly newPages: Page[] = [];
   private current: Page;
-  /** Set by the robots.txt route when it blocks a navigation. */
-  robotsBlocked: string | null = null;
+  /** Set by the robots.txt route when it blocks a navigation, with why it was blocked. */
+  robotsBlocked: { url: string; why: "disallowed" | "unreadable" } | null = null;
   private browser: Browser;
   private context: BrowserContext;
   private dir: string;
@@ -82,6 +87,7 @@ export class AuditSession {
     // Identify ourselves honestly, on top of a normal browser string so pages render as for a shopper.
     const userAgent = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${browser.version()} Safari/537.36 ${USER_AGENT_SUFFIX}`;
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: "en-IN", userAgent });
+    context.setDefaultNavigationTimeout(options.navigationTimeoutMs ?? (isLocal(baseUrl) ? 30_000 : 60_000));
     await context.tracing.start({ screenshots: true, snapshots: true, sources: false });
     const page = await context.newPage();
 
@@ -110,9 +116,12 @@ export class AuditSession {
         try {
           topLevel = req.frame().parentFrame() === null;
         } catch {}
-        if (req.isNavigationRequest() && topLevel && !(await robots.allowed(req.url()))) {
-          session.robotsBlocked = req.url();
-          return route.abort("blockedbyclient");
+        if (req.isNavigationRequest() && topLevel) {
+          const verdict = await robots.check(req.url());
+          if (!verdict.allowed) {
+            session.robotsBlocked = { url: req.url(), why: verdict.why };
+            return route.abort("blockedbyclient");
+          }
         }
         return route.continue();
       });
@@ -221,15 +230,18 @@ export class AuditSession {
     await this.settle();
     if (await this.adoptNewTab()) await this.settle();
     if (this.robotsBlocked) {
-      const url = this.robotsBlocked;
-      throw new StopAudit(`Stopped: robots.txt disallows ${url}`);
+      const { url, why } = this.robotsBlocked;
+      throw new StopAudit(
+        why === "disallowed"
+          ? `Stopped: robots.txt disallows ${url}`
+          : `Stopped: ${new URL(url).origin}/robots.txt could not be read, so this audit stayed out of ${url}`,
+      );
     }
     // A browser error page is not evidence of anything about the shop. Say so, instead of recording it.
     if (this.page.url().startsWith("chrome-error://")) {
       throw new Error(`The page failed to load after "${action}" (the browser showed its own error page), so nothing was recorded for it.`);
     }
-    const text = await this.page.evaluate(() => document.body?.innerText ?? "");
-    const blocked = detectBlock(this.lastStatus, text);
+    const blocked = detectBlock(this.lastStatus, await this.bodyText());
     if (blocked) {
       await this.record("blocked").catch(() => {});
       throw new NotAuditable(`Not auditable: ${blocked}`);
@@ -241,6 +253,22 @@ export class AuditSession {
   private async record(action: string, dialog: Dialog | null = null) {
     const { run } = this;
     run.steps.push(await captureStep(this.page, { dir: this.dir, index: run.steps.length, action, dialog, claimed: this.agentAdded }));
+  }
+
+  /**
+   * Real shops redirect, refresh and swap the document under us, which destroys the context a
+   * running evaluate() belongs to. That is the page being a page, not an audit failure: settle
+   * again and read once more, and only then let the error through.
+   */
+  private async bodyText(): Promise<string> {
+    const read = () => this.page.evaluate(() => document.body?.innerText ?? "");
+    try {
+      return await read();
+    } catch (error) {
+      if (!/Execution context was destroyed|frame was detached|Target closed/i.test(String(error))) throw error;
+      await this.settle();
+      return read();
+    }
   }
 
   /** Waits for the page to go quiet, so client-rendered popups and prices have appeared. */

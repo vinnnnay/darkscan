@@ -9,7 +9,7 @@
   "scripts": {
     "dev:bench": "npm run dev -w @darkscan/darkbench",
     "build:bench": "npm run build -w @darkscan/darkbench",
-    "typecheck": "tsc -p packages/schema --noEmit && tsc -p packages/crawler --noEmit && tsc -p packages/detectors --noEmit && tsc -p packages/report --noEmit && tsc -p packages/agent --noEmit && tsc -p packages/session --noEmit && tsc -p packages/eval --noEmit && tsc -p packages/dashboard --noEmit && tsc -p apps/darkbench --noEmit",
+    "typecheck": "tsc -p packages/schema --noEmit && tsc -p packages/crawler --noEmit && tsc -p packages/detectors --noEmit && tsc -p packages/report --noEmit && tsc -p packages/agent --noEmit && tsc -p packages/session --noEmit && tsc -p packages/eval --noEmit && tsc -p packages/dashboard --noEmit && tsc -p packages/field --noEmit && tsc -p apps/darkbench --noEmit",
     "test": "vitest run",
     "serve:bench": "node apps/darkbench/scripts/serve.ts",
     "test:e2e": "playwright test",
@@ -17,6 +17,8 @@
     "eval": "npm run eval -w @darkscan/eval --",
     "learn": "npm run learn -w @darkscan/agent --",
     "audit": "npm run audit -w @darkscan/agent --",
+    "survey": "npm run survey -w @darkscan/field --",
+    "sweep": "npm run sweep -w @darkscan/field --",
     "dashboard": "npm run build -w @darkscan/dashboard --",
     "record": "npm run record -w @darkscan/session --",
     "analyze": "npm run analyze -w @darkscan/session --",
