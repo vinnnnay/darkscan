@@ -1,4 +1,5 @@
-import { ANNEXURE_CAVEAT, PATTERNS, PATTERN_NOTES, type AuditRun, type Finding, type PatternId, type Step } from "@darkscan/schema";
+import { ANNEXURE_CAVEAT, PATTERNS, PATTERN_NOTES, type PatternId } from "@darkscan/schema/patterns";
+import type { AuditRun, Finding, Step } from "@darkscan/schema";
 
 export type ReportMode = "crawler" | "recorded-session";
 

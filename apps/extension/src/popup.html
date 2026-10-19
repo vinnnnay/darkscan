@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DarkScan</title>
+<style>
+:root{--bg:#fff;--fg:#1c1f24;--muted:#5f6672;--line:#dde1e6;--card:#f6f7f9;--likely:#b3261e;--review:#8a5a00}
+@media (prefers-color-scheme:dark){:root{--bg:#14161a;--fg:#e8eaee;--muted:#9aa1ad;--line:#2d3139;--card:#1c1f25;--likely:#ff8a80;--review:#f2c26b}}
+*{box-sizing:border-box}
+body{width:380px;max-height:580px;overflow-y:auto;margin:0;padding:14px;background:var(--bg);color:var(--fg);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:1.05rem;margin:0 0 2px}
+.muted{color:var(--muted);font-size:.82rem}
+button{font:inherit;padding:8px 14px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+button.primary{background:#1a56db;border-color:#1a56db;color:#fff}
+.row{display:flex;gap:8px;align-items:center;margin:12px 0}
+.finding{border:1px solid var(--line);border-left-width:4px;border-radius:6px;padding:9px 11px;margin:8px 0;background:var(--card)}
+.finding.likely{border-left-color:var(--likely)}.finding.review{border-left-color:var(--review)}
+.finding h2{font-size:.92rem;margin:0 0 3px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.badge{font-size:.68rem;padding:1px 7px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.badge.likely{color:var(--likely)}.badge.review{color:var(--review)}
+.finding p{margin:0;font-size:.84rem}
+.notice{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:9px 11px;font-size:.8rem;margin:10px 0}
+ul{margin:6px 0 0;padding-left:17px;font-size:.8rem}
+</style>
+</head>
+<body><main id="app"></main><script type="module" src="popup.js"></script></body>
+</html>

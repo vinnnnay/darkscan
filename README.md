@@ -406,6 +406,43 @@ npm run survey           # real shops: what robots.txt allows (no crawling)
 npm run sweep            # real shops: one audit run each (slow, hits live sites)
 ```
 
+## Chrome extension
+
+`robots.txt` stops the crawler at the cart on most shops. An extension has no such problem: it is
+the person's own browser, loading pages they asked for, with their own clicks. Nothing is crawled,
+so Amazon and Flipkart are as auditable as anywhere else.
+
+```bash
+npm run extension     # → apps/extension/dist
+```
+
+Then **chrome://extensions → Developer mode → Load unpacked →** pick `apps/extension/dist`. Open a
+shop, click the icon, press **Audit this shop**, and shop as usual. The badge counts potential
+patterns; the popup explains each one and what the audit could not see.
+
+It watches a **whole visit**, not one page, because that is what the detectors need: drip pricing
+compares the cart total with the checkout total, basket sneaking needs to know what you added,
+false urgency needs a countdown before and after a reload, nagging needs a popup to come back.
+
+**It reuses the audited code rather than reimplementing it.** The content script calls the same
+page-reading functions as the crawler, and the same seven rule detectors score the result. The
+only new code is the glue: observations in, an `AuditRun` out.
+
+| | |
+|---|---|
+| Patterns | the 7 that need no language model; confirm shaming, trick questions and disguised ads are left out rather than guessed |
+| Permission | per shop, granted by the person, revoked by "Stop and forget this visit" |
+| Leaves the machine | nothing: no server, no telemetry, and session storage that Chrome clears on exit |
+| Kept about a page | visible text, prices, cart rows, checkbox labels, link text, popup button styles — **no screenshots and no page HTML**, because no rule reads them |
+| Size | about 18 KB |
+
+Proven the same way as everything else here: an end-to-end test loads the **built bundle** into
+DarkBench and walks it like a shopper. On the every-pattern variant it finds basket sneaking, false
+urgency, interface interference, nagging, forced action and bait and switch; on the clean variant it
+finds nothing. Drip pricing has a test of its own, because variant 1's account wall hides the
+checkout summary — the same blind spot the automated agent has, and a good illustration of why a
+report states what it could not see.
+
 ## Running it in Docker
 
 Nothing needs to be installed but Docker: not Node, not a browser, not Ollama.
@@ -469,6 +506,7 @@ packages/detectors Rule detectors and local-LLM detectors: run evidence → find
 packages/eval      Crawl every DarkBench variant and score precision/recall
 packages/dashboard Static dashboard built from the eval scores
 packages/field     Real shops: the robots.txt survey and the one-run-per-shop sweep
+apps/extension     Chrome extension: audit a shop while you browse it yourself
 eval/              Latest scores and the CI regression baselines
 audits/            Generated: which real shops may be audited, and how a run on each one went
 recipes/           Saved site recipes (JSON)

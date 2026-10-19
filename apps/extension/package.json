@@ -1,0 +1,15 @@
+{
+  "name": "@darkscan/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.ts"
+  },
+  "dependencies": {
+    "@darkscan/crawler": "*",
+    "@darkscan/detectors": "*",
+    "@darkscan/report": "*",
+    "@darkscan/schema": "*"
+  }
+}

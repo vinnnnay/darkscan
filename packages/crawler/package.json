@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "exports": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./extract": "./src/extract.ts",
+    "./collect": "./src/collect.ts"
+  },
   "scripts": {
     "crawl": "node src/cli.ts"
   },

@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "DarkScan — dark pattern audit",
+  "version": "0.1.0",
+  "description": "Spots dark patterns banned by India's CCPA while you shop. Everything stays in your browser.",
+  "permissions": ["storage", "scripting", "tabs", "webNavigation"],
+  "optional_host_permissions": ["*://*/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_popup": "popup.html", "default_title": "DarkScan" }
+}

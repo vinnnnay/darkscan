@@ -9,7 +9,7 @@
   "scripts": {
     "dev:bench": "npm run dev -w @darkscan/darkbench",
     "build:bench": "npm run build -w @darkscan/darkbench",
-    "typecheck": "tsc -p packages/schema --noEmit && tsc -p packages/crawler --noEmit && tsc -p packages/detectors --noEmit && tsc -p packages/report --noEmit && tsc -p packages/agent --noEmit && tsc -p packages/session --noEmit && tsc -p packages/eval --noEmit && tsc -p packages/dashboard --noEmit && tsc -p packages/field --noEmit && tsc -p apps/darkbench --noEmit",
+    "typecheck": "tsc -p packages/schema --noEmit && tsc -p packages/crawler --noEmit && tsc -p packages/detectors --noEmit && tsc -p packages/report --noEmit && tsc -p packages/agent --noEmit && tsc -p packages/session --noEmit && tsc -p packages/eval --noEmit && tsc -p packages/dashboard --noEmit && tsc -p packages/field --noEmit && tsc -p apps/darkbench --noEmit && tsc -p apps/extension --noEmit",
     "test": "vitest run",
     "serve:bench": "node apps/darkbench/scripts/serve.ts",
     "test:e2e": "playwright test",
@@ -20,6 +20,7 @@
     "survey": "npm run survey -w @darkscan/field --",
     "sweep": "npm run sweep -w @darkscan/field --",
     "dashboard": "npm run build -w @darkscan/dashboard --",
+    "extension": "npm run build -w @darkscan/extension --",
     "record": "npm run record -w @darkscan/session --",
     "analyze": "npm run analyze -w @darkscan/session --",
     "export-run": "npm run export -w @darkscan/session --",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
+    "esbuild": "^0.28.2",
     "typescript": "^5.9.3",
     "vitest": "^5.0.5"
   }

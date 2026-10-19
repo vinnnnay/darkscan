@@ -12,3 +12,6 @@ playwright-report/
 .cache/
 share/
 site/
+apps/extension/dist/
+# a throwaway recipe for the local test shop, written by npm run learn against DarkBench
+recipes/demo.json
