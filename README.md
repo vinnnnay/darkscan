@@ -446,6 +446,16 @@ that only the exact value `1` turns it off.
 CI builds both images, runs the unit tests inside the tools image, and crawls the bench service, so
 the `Dockerfile` cannot rot unnoticed.
 
+**If the build fails at `apt` with "Could not resolve deb.debian.org"**, it is Docker Desktop's build
+sandbox having no working DNS, not the `Dockerfile`: the same build succeeds in CI, and a plain
+`docker run` in the same engine resolves the host fine. Build through the host's network instead,
+then start as usual — Compose reuses an image that already exists.
+
+```bash
+docker build --network=host --target bench -t darkscan-bench .
+docker build --network=host --target tools -t darkscan-tools .
+```
+
 ## Layout
 
 ```
