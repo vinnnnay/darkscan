@@ -43,7 +43,10 @@ jobs:
           npm run eval -- --check
           npm run eval -- --agent --check
       - run: npm run dashboard -- --out apps/darkbench/out/dashboard
+      # enablement turns Pages on the first time this runs, so the site needs no click in Settings.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: apps/darkbench/out
